@@ -78,6 +78,7 @@ module.exports = (app, passport) => {
 
     app.post('/amonooos/profile/upload', upload.array('foto', 1), function (req, res, next) {
         console.log(req.user.local.usuario);
+        
         for (var x = 0; x < req.files.length; x++) {
             //copiamos la referencia de la imagen en la base de datos
             var newImage = new Image();
