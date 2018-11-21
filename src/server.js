@@ -44,5 +44,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.listen(app.get('port'), () => {
-    console.log('RED SOCIAL corriendo en http://localhost:8010')
+    console.log('RED SOCIAL corriendo en http://localhost:8010/amonooos')
 })
