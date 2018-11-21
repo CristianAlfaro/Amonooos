@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/perfil.css">
+    <link rel="stylesheet" href="/css/sidenav.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">    <title>Profile page</title>
+</head>
+
+<body class="fondo">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light color">
+        <a class="navbar-brand" href="#">Amonooos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><%= user.local.usuario %> <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> Home </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span class="fas fa-sliders-h"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout">log out</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="fas fa-search"></span></button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+            <div class="row d-flex d-md-block flex-nowrap wrapper">
+                <div class="col-md-2 float-left col-1 pl-0 pr-0 collapse width " id="sidebar">
+                        <div class="list-group border-0 card text-center text-md-left">
+                        <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-user"></i> <span class="d-none d-md-inline">Informacion</span> </a>
+                        <div class="collapse" id="menu1">
+                            <a href="#menu1sub1" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 1 </a>
+                            <div class="collapse" id="menu1sub1">
+                                <a href="#" class="list-group-item" data-parent="#menu1sub1">Subitem 1</a>
+                                <a href="#menu1sub1sub1" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 2 </a>
+                                <div class="collapse" id="menu1sub1sub1">
+                                    <a href="#" class="list-group-item" data-parent="#menu1sub1sub1">Subitem 2 a</a>
+                                    <a href="#" class="list-group-item" data-parent="#menu1sub1sub1">Subitem 2 b</a>
+                                </div>
+                                <a href="#menu1sub1sub2" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 3 </a>
+                                <div class="collapse" id="menu1sub1sub2">
+                                    <a href="#" class="list-group-item" data-parent="#menu1sub1sub2">Subitem 3 a</a>
+                                    <a href="#" class="list-group-item" data-parent="#menu1sub1sub2">Subitem 3 b</a>
+                                </div>
+                            </div>
+                            <a href="#" class="list-group-item" data-parent="#menu1">Subitem 2</a>
+                            <a href="#" class="list-group-item" data-parent="#menu1">Subitem 3</a>
+                        </div>
+                        
+                        <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Amigos</span></a>
+                        <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-list"></i> <span class="d-none d-md-inline">Configuracion</span></a>
+                    </div>
+                </div>
+                <main class="col-md-9 col px-5 pl-md-2 pt-2 main ">
+                    <a href="#" data-target="#sidebar" data-toggle="collapse" aria-expanded="false"><i class="fas fa-stop fa-2x py-2 p-1 sidebarMy"></i></a>
+                    <form action="/upload", method="POST", enctype="multipart/form-data">
+                        <input type="text" name="nombre">
+                        <input type="file" name="archive">
+                        <input type="submit"> 
+                    </form>
+                </main>
+            </div>
+        </div>
+        
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>

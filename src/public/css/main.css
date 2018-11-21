@@ -1,0 +1,17 @@
+.login{
+    background: #ab2f2f;
+    background: -webkit-linear-gradient(to right, #e06363, #882828);
+    background: linear-gradient(to right, #0000005b, #4709099f);
+    background-image: url(../img/fondo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.signup{
+    background: #372fab;
+    background: -webkit-linear-gradient(to right, #636be0, #202870);
+    background: linear-gradient(to right, #0000004b, #040f7596);
+    background-image: url(../img/fondo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}

@@ -1,0 +1,15 @@
+.color{
+    background-color: #a3a3a570 !important;
+}
+
+.fondo{
+    height: 100%;
+    background-image: url('../img/fondo2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+html{
+    height: 100%;
+}

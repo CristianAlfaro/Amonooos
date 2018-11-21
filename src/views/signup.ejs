@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <% include partials/head %>
+    <title>signup</title>
+</head>
+
+<body class="signup">
+    <div class="container">
+        <div class="col-sm-6 mx-auto">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h1 class="text-center">
+                        <span class="fa fa-sign-up-alt"></span> sign up
+                    </h1>
+                    <% if (message.length > 0){ %>
+                    <div class="alert alert-danger">
+                        <%= message %>
+                    </div>
+                    <% } %>
+
+                    <form action="/signup" method="post">
+                        <div class="form-group">
+                            <label for="usuario">Usuario</label>
+                            <input type="text" name="usuario" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password2">Confirm password</label>
+                            <input type="password" name="password2" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" name="email" class="form-control">
+                        </div>
+                        <input type="submit" class="btn btn-dark btn-lg">
+                    </form>
+                    <hr>
+                    <div class="text-center">
+                        <p>Already have an account?
+                            <a href="/">login</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

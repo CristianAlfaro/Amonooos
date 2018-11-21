@@ -1,0 +1,23 @@
+{
+  "name": "red_social",
+  "version": "1.0.0",
+  "description": "Proyeto de programacion Web, Red Social Quahul",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "author": "Cristian Alfaro",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "flash": "^1.1.0",
+    "mongoose": "^5.3.13",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.6",
+    "passport": "^0.4.0"
+  }
+}
