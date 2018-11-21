@@ -1,3 +1,9 @@
+var multer = require('multer');
+var upload = multer({dest: '../uploads/'});
+var path = require('path');
+var fs = require('fs');
+var Path =  path.join(__dirname,"..","public","photos");
+
 module.exports = (app, passport) => {
 
         app.get('/amonooos', (req, res) => {
@@ -65,5 +71,35 @@ module.exports = (app, passport) => {
             }
             return res.redirect('/amonooos');
         }
+
+        //UPLOAD PHOTO
+
+        app.post('/amonooos/profile/upload', upload.array('foto', 1), function(req, res, next) {
+            for(var x=0;x<req.files.length;x++) {
+                //copiamos el archivo a la carpeta definitiva de fotos
+               fs.createReadStream('../uploads/'+req.files[x].filename).pipe(fs.createWriteStream(path.join(Path,req.files[x].originalname))); 
+               //borramos el archivo temporal creado
+               fs.unlink('../uploads/'+req.files[x].filename); 
+            }  
+            var pagina='<!doctype html><html><head></head><body>'+
+                       '<p>Se subieron las fotos</p>'+
+                       '<br><a href="/amonooos/profile/">Retornar</a></body></html>';
+              res.send(pagina);        
+        });
+
+
+        // GET PHOTOS
+
+        app.get('/amonooos/profile/fotos', function(req, res, next) {
+            fs.readdir(Path, function(err, files) {  
+               var pagina='<!doctype html><html><head></head><body>';
+               for(var x=0;x<files.length;x++) {
+                   pagina+='<img src="/photos/'+files[x]+'"><br>';
+               }
+               pagina+='<br><a href="/amonooos/profile">Retornar</a></body></html>';
+               res.send(pagina);        
+            });
+         });
+
         
 };

@@ -37,10 +37,11 @@ app.use(passport.session());
 app.use(flash());
 
 
-require('./app/models/routes/routes')(app, passport);
+require('./routes/routes')(app, passport);
 
 
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.listen(app.get('port'), () => {
     console.log('RED SOCIAL corriendo en http://localhost:8010')

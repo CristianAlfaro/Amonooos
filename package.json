@@ -17,6 +17,7 @@
     "flash": "^1.1.0",
     "mongoose": "^5.3.13",
     "morgan": "^1.9.1",
+    "multer": "^1.4.1",
     "nodemon": "^1.18.6",
     "passport": "^0.4.0"
   }
