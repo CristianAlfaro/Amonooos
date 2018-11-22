@@ -78,12 +78,11 @@ module.exports = (app, passport) => {
 
     app.post('/amonooos/profile/upload', upload.array('foto', 1), function (req, res, next) {
         console.log(req.user.local.usuario);
-        
         for (var x = 0; x < req.files.length; x++) {
             //copiamos la referencia de la imagen en la base de datos
             var newImage = new Image();
             newImage.local.usuario = req.user.local.usuario;
-            newImage.local.image = path.join(Path, req.files[x].originalname);
+            newImage.local.image = path.join(req.files[x].originalname);
             newImage.save(function (err) {
                 if (err) { throw err; }
             });
@@ -102,14 +101,31 @@ module.exports = (app, passport) => {
     // GET PHOTOS
 
     app.get('/amonooos/profile/fotos', function (req, res, next) {
+        Image.find({'local.usuario': req.user.local.usuario},function(err,images){
+            if(err){
+                console.log(err);
+            }
+            if(images){
+                var pagina = '<!doctype html><html><head></head><body>';
+                for (var x = 0; x < images.length; x++){
+                    console.log(images[x].local.image);
+                    pagina += '<img src="/photos/' + images[x].local.image + '"><br>';
+ 
+                }
+            }
+            pagina += '<br><a href="/amonooos/profile">Retornar</a></body></html>'; 
+            res.send(pagina);      
+        }); /*
         fs.readdir(Path, function (err, files) {
             var pagina = '<!doctype html><html><head></head><body>';
             for (var x = 0; x < files.length; x++) {
+                console.log('---------------------');
+                console.log(files[x]);
                 pagina += '<img src="/photos/' + files[x] + '"><br>';
             }
             pagina += '<br><a href="/amonooos/profile">Retornar</a></body></html>';
             res.send(pagina);
-        });
+        });*/
     });
 
 
