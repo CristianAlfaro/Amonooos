@@ -264,3 +264,45 @@ header label {
 		display: none;
 	}
 }
+
+.amigo{
+	margin: 1.5em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.amigo img{
+	width: 100%;
+	max-width: 40px;
+	border-radius: 50%;
+	border: 2px solid #fff;
+}
+.amigos{
+	background: -webkit-linear-gradient(rgba(141, 33, 33, 0.356), rgba(8, 8, 19, 0.301));
+	margin-bottom: 3em;
+	display: grid;
+	grid-template-columns: 75% 25%;
+	border-radius: 10%;
+	height: 100%;
+}
+
+.lista-amigos{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.personal-info{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-right: 1.5em	
+}
+#espacio{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+.subir{
+	cursor: pointer;
+}
