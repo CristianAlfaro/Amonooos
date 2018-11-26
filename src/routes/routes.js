@@ -3,6 +3,7 @@ var upload = multer({ dest: '../uploads/' });
 var path = require('path');
 var fs = require('fs');
 var Path = path.join(__dirname, "..", "public", "photos");
+PostController =  require ('../config/postControllers');
 
 const Image = require('../models/post');
 
@@ -11,7 +12,6 @@ module.exports = (app, passport) => {
     app.get('/amonooos', (req, res) => {
         res.render('index');
     });
-
 
     app.post('/amonooos', passport.authenticate('local-login', {
         successRedirect: '/profile',
@@ -34,7 +34,6 @@ module.exports = (app, passport) => {
         failureFlash: true
     }));
 
-
     //SIGN UP
 
     app.get('/amonooos/signup', (req, res) => {
@@ -50,7 +49,6 @@ module.exports = (app, passport) => {
         failureFlash: true
     }));
 
-
     //PROFILE
 
     app.get('/amonooos/profile', isLoggedIn, (req, res) => {
@@ -58,7 +56,6 @@ module.exports = (app, passport) => {
             user: req.user
         });
     });
-
 
     //LOG OUT
 
@@ -76,57 +73,13 @@ module.exports = (app, passport) => {
 
     //UPLOAD PHOTO
 
-    app.post('/amonooos/profile/upload', upload.array('foto', 1), function (req, res, next) {
-        console.log(req.user.local.usuario);
-        for (var x = 0; x < req.files.length; x++) {
-            //copiamos la referencia de la imagen en la base de datos
-            var newImage = new Image();
-            newImage.local.usuario = req.user.local.usuario;
-            newImage.local.image = path.join(req.files[x].originalname);
-            newImage.save(function (err) {
-                if (err) { throw err; }
-            });
-            //copiamos el archivo a la carpeta definitiva de fotos
-            fs.createReadStream('../uploads/' + req.files[x].filename).pipe(fs.createWriteStream(path.join(Path, req.files[x].originalname)));
-            //borramos el archivo temporal creado
-            fs.unlink('../uploads/' + req.files[x].filename);
-        }
-        var pagina = '<!doctype html><html><head></head><body>' +
-            '<p>Se subieron las fotos</p>' +
-            '<br><a href="/amonooos/profile/">Retornar</a></body></html>';
-        res.send(pagina);
-    });
-
+    app.post('/amonooos/profile/upload',upload.array('foto', 1), PostController.create);
 
     // GET PHOTOS
 
-    app.get('/amonooos/profile/fotos', function (req, res, next) {
-        Image.find({'local.usuario': req.user.local.usuario},function(err,images){
-            if(err){
-                console.log(err);
-            }
-            if(images){
-                var pagina = '<!doctype html><html><head></head><body>';
-                for (var x = 0; x < images.length; x++){
-                    console.log(images[x].local.image);
-                    pagina += '<img src="/photos/' + images[x].local.image + '"><br>';
- 
-                }
-            }
-            pagina += '<br><a href="/amonooos/profile">Retornar</a></body></html>'; 
-            res.send(pagina);      
-        }); /*
-        fs.readdir(Path, function (err, files) {
-            var pagina = '<!doctype html><html><head></head><body>';
-            for (var x = 0; x < files.length; x++) {
-                console.log('---------------------');
-                console.log(files[x]);
-                pagina += '<img src="/photos/' + files[x] + '"><br>';
-            }
-            pagina += '<br><a href="/amonooos/profile">Retornar</a></body></html>';
-            res.send(pagina);
-        });*/
-    });
+    app.get('/amonooos/profile/fotos', PostController.mostrar)
 
+    //DELETE PHOTO
 
+    app.delete('/amonooos/profile/delete/:id', PostController.delete)
 };

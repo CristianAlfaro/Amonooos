@@ -77,19 +77,27 @@
                 </div>
                 <main class="col-md-9 col px-5 pl-md-2 pt-2 main ">
                     <a href="#" data-target="#sidebar" data-toggle="collapse" aria-expanded="false"><i class="fas fa-stop fa-2x py-2 p-1 sidebarMy"></i></a>
-                    <form action="/amonooos/profile/upload", method="POST", enctype="multipart/form-data">
-                        <input type="file" name="foto" value="Foto">    
+                    <form action="/amonooos/profile/upload", method="POST", enctype="multipart/form-data", name="postForm">
+                        <input type="file" name="foto" value="Foto" id="fotoPost">
                         <a class="btn btn-light btn-lg" href="/amonooos/profile/fotos">Ver fotos</a>
                         <input type="submit"> 
                     </form>
+                    <div class="publicaciones">
+
+                    </div>
                 </main>
             </div>
+        </div>
+
+        <div class="publicaciones">
+
         </div>
         
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>

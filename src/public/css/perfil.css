@@ -8,8 +8,21 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 html{
     height: 100%;
+}
+
+.publicaciones{
+    width: 30em;
+}
+
+.post{
+    width: 100%;
+}
+
+.post img{
+    width: 100%;
 }
