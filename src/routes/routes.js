@@ -77,9 +77,13 @@ module.exports = (app, passport) => {
 
     // GET PHOTOS
 
-    app.get('/amonooos/profile/fotos', PostController.mostrar)
+    app.get('/amonooos/profile/fotos', PostController.mostrar);
 
     //DELETE PHOTO
 
-    app.delete('/amonooos/profile/delete/:id', PostController.delete)
+    app.delete('/amonooos/profile/delete/:id', PostController.delete);
+
+    //GET USER
+
+    app.get('/amonooos/profile/user' , PostController.usuario);
 };

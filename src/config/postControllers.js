@@ -10,6 +10,7 @@ const PostController = {};
 
 PostController.create = function (req, res) {
     var x = 0;
+    console.log(req.files);
     let data = {
         usuario: req.user.local.usuario,
         image: req.files[x].originalname
@@ -32,7 +33,6 @@ PostController.create = function (req, res) {
         res.json({err:{code: 400,  message: 'Faltan datos', data}});
     }
 };
-
 PostController.mostrar = function (req,res){
     //var contenido = document.getElementsByClassName('publicaciones');
     //console.log(contenido);
@@ -45,7 +45,6 @@ PostController.mostrar = function (req,res){
         }
     });
 };
-
 PostController.delete = function(req,res){
     postModel.findByIdAndRemove(req.params.id, function(err, eliminado){
         if (err) {
@@ -55,6 +54,10 @@ PostController.delete = function(req,res){
             res.json({ok: true, eliminado});
         }
     });
-}
-
-module.exports = PostController;
+};
+PostController.usuario = function(req,res){
+    
+    var usuario = req.user.local.usuario;
+    res.json({ok:true, usuario})
+};
+module.exports = PostController;	

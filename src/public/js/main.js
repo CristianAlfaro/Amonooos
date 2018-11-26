@@ -3,13 +3,18 @@ window.onload = () => {
 }
 
 let app = {
+    user: "",
     init: function () {
-        this.addEvents();
-        this.loadContent(this.newPost);
+        console.log('-----------------------');
+        this.getusuario(() =>{
+            this.addEvents();       
+            this.loadContent(this.newPost);
+        }     
+        );
     },
     addEvents: function () {
         document.postForm.addEventListener("submit", (event) => {
-            this.submitPost(event, this.newPost);
+            this.createPost(event, this.newPost);
         });
     },
     newPost: function(data){
@@ -26,24 +31,26 @@ let app = {
         });
         post.appendChild(div);
     },
-    createPost: (event,newPost) => {
+    createPost: function(event,newPost)  {
         event.preventDefault();
-        let data = {
-            usuario: user.local.usuario,
-            image: document.postForm.foto.value
+        
+
+        var formData  = new FormData(document.postForm);
+
+
+        let options = {
+            method: 'POST',
+            body: formData
         };
-        fetch('/amonooos/profile/upload', {
-            method: POST,
-            body: JSON.stringify(data)
-        }).then(res => res.json())
+        
+        fetch('/amonooos/profile/upload', options).then(res => res.json())
         .then(_data => {
-            if(data.ok) {
+            if(_data.ok) {
                 newPost(_data.save)
             } else {
                 document.getElementsByClassName("errors")[0].innerText = "No se pudo guardar";
             }
         });
-
     },
     loadContent: function (newPost) {
         fetch('/amonooos/profile/fotos', {
@@ -72,6 +79,16 @@ let app = {
                 document.getElementsByClassName("errors")[0].innerText = "No se pudo elminiar";
             }
         })
+    },
+    getusuario: function(cb) {
+        fetch('/amonooos/profile/user', {
+            method: 'get'
+        }).then (res => res.json()).then(data =>{
+            if(data.ok){
+                this.user = data.usuario;
+                cb();
+            }
+        });
     }
     
 };

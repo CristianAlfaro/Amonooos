@@ -22,7 +22,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#"><%= user.local.usuario %> <span class="sr-only">(current)</span></a>
+                    <a class="nav-link usuario" href="#"> <%= user.local.usuario %> <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"> Home </a>
@@ -79,7 +79,6 @@
                     <a href="#" data-target="#sidebar" data-toggle="collapse" aria-expanded="false"><i class="fas fa-stop fa-2x py-2 p-1 sidebarMy"></i></a>
                     <form action="/amonooos/profile/upload", method="POST", enctype="multipart/form-data", name="postForm">
                         <input type="file" name="foto" value="Foto" id="fotoPost">
-                        <a class="btn btn-light btn-lg" href="/amonooos/profile/fotos">Ver fotos</a>
                         <input type="submit"> 
                     </form>
                     <div class="publicaciones">
