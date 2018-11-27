@@ -5,7 +5,6 @@ window.onload = () => {
 let app = {
     user: "",
     init: function () {
-        console.log('-----------------------');
         this.getusuario(() =>{
             this.addEvents();       
             this.loadContent(this.newPost);
@@ -22,9 +21,12 @@ let app = {
         let div = document.createElement("div");
         div.classList.add('post');
         div.innerHTML = `
+            <h3> ${data.usuario} </h3>
             <img src= "/photos/${data.image}"> 
-            <a href="#" class="delete"> Delete </a> 
-            <a href="#" class="update"> Update </a>
+            <div class= "opciones">
+                <a href="#" class="delete"> Delete </a> 
+                <a href="#" class="update"> Update </a>
+            </div>
         `;
         div.getElementsByClassName("delete")[0].addEventListener("click", (event) => {
             this.deletePost(event, data, div, post);
@@ -33,16 +35,12 @@ let app = {
     },
     createPost: function(event,newPost)  {
         event.preventDefault();
-        
-
         var formData  = new FormData(document.postForm);
-
-
+        console.log(formData);
         let options = {
             method: 'POST',
             body: formData
-        };
-        
+        };       
         fetch('/amonooos/profile/upload', options).then(res => res.json())
         .then(_data => {
             if(_data.ok) {
@@ -61,7 +59,7 @@ let app = {
             .then(data => {
 
                 if (data.ok) {
-                    data.images.forEach(element => {
+                    data.images.reverse().forEach(element => {
                         newPost(element);
                     });
                 }

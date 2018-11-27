@@ -13,7 +13,7 @@
 
 <body class="fondo">
     <nav class="navbar navbar-expand-lg navbar-light bg-light color">
-        <a class="navbar-brand" href="#">Amonooos</a>
+        <a class="navbar-brand" data-target="#sidebar" data-toggle="collapse" aria-expanded="false" href="#">Amonooos</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -75,9 +75,9 @@
                         <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-list"></i> <span class="d-none d-md-inline">Configuracion</span></a>
                     </div>
                 </div>
-                <main class="col-md-9 col px-5 pl-md-2 pt-2 main ">
-                    <a href="#" data-target="#sidebar" data-toggle="collapse" aria-expanded="false"><i class="fas fa-stop fa-2x py-2 p-1 sidebarMy"></i></a>
-                    <form action="/amonooos/profile/upload", method="POST", enctype="multipart/form-data", name="postForm">
+                <main>
+                    <form action="/amonooos/profile/upload", method="POST", enctype="multipart/form-data", name="postForm" class="formulario">
+                        <input type="text" name="comentario" placeholder="comment something">
                         <input type="file" name="foto" value="Foto" id="fotoPost">
                         <input type="submit"> 
                     </form>

@@ -4,7 +4,7 @@
 
 .fondo{
     height: 100%;
-    background-image: url('../img/fondo2.jpg');
+    background-image: url('../img/fondo3.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -16,13 +16,78 @@ html{
 }
 
 .publicaciones{
-    width: 30em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .post{
-    width: 100%;
+    width: 50em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.336);
+    margin: 1em 0;
+    padding: 4em 0 2em;
+    transition: all 0.5s;
+    -webkit-box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75); 
+    -moz-box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75); 
+    box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75); 
+}
+
+.post:hover{
+    transition: all 0.5s;
+    background-color: rgba(51, 3, 3, 0.534);
 }
 
 .post img{
-    width: 100%;
+    width: 80%;
+}
+
+.post a{
+    color: white;
+    font-size: 1em;
+}
+
+.formulario{
+    padding: 2em;
+    display: flex;
+    flex-direction: column; 
+    width: 40em;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario input[type=text]{
+    padding: 1em;
+    margin: 0 0 0.3em;
+    background-color: rgba(240, 255, 255, 0.452);
+    border: 0;
+    width: 70%;
+}
+
+.formulario input[type=file]{
+    padding: 0.1em;
+    margin: 0 0 0.3em;
+    border: 0;
+    width: 70%;
+    color: aliceblue;
+}
+
+.formulario input[type=submit]{
+    padding: 0.4em;
+    margin: 0 0 0.3em;
+    background-color: rgba(240, 255, 255, 0.096);
+    border-radius: 5em;
+    width: 40%;
+    border: 0;
 }

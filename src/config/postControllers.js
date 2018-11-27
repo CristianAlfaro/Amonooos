@@ -15,7 +15,6 @@ PostController.create = function (req, res) {
         usuario: req.user.local.usuario,
         image: req.files[x].originalname
     };
-    console.log(data);
     if (data.usuario && data.image && data.usuario != '' && data.image != '') {
         let nuevoPost = new postModel(data);
         nuevoPost.save(function (err, save) {
