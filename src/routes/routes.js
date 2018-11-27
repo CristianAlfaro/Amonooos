@@ -86,4 +86,12 @@ module.exports = (app, passport) => {
     //GET USER
 
     app.get('/amonooos/profile/user' , PostController.usuario);
+
+    //UPLOAD PROFILE PHOTO
+
+    app.post('/amonooos/profile/user/photo',upload.array('foto', 1), PostController.perfilfoto);
+
+    //GET USER PROFILE PHOTO
+
+    app.get('/amonooos/profile/user/photo', PostController.getPhoto);
 };

@@ -1,19 +1,22 @@
 const mongoose = require('mongoose'),
     postModel = require('../models/post'),
+    perfilModel = require('../models/perfil')
     multer = require('multer'),
     path = require('path'),
     fs = require('fs');
 var Path = path.join(__dirname,"..", "public", "photos");
+var Path2 = path.join(__dirname,"..", "public", "ProfilePhotos");
 const Image = require('../models/post');
+const ImagePerfil = require('../models/perfil');
 
 const PostController = {};
 
 PostController.create = function (req, res) {
     var x = 0;
-    console.log(req.files);
     let data = {
         usuario: req.user.local.usuario,
-        image: req.files[x].originalname
+        image: req.files[x].originalname,
+        comentario: req.body.comentario
     };
     if (data.usuario && data.image && data.usuario != '' && data.image != '') {
         let nuevoPost = new postModel(data);
@@ -58,5 +61,39 @@ PostController.usuario = function(req,res){
     
     var usuario = req.user.local.usuario;
     res.json({ok:true, usuario})
+};
+PostController.perfilfoto = function(req,res){
+    var x = 0;
+    let data = {
+        usuario: req.user.local.usuario,
+        image: req.files[0].originalname,
+    };
+    console.log(data);
+    if (data.usuario && data.image && data.usuario != '' && data.image != '') {
+        let nuevoPerfil = new perfilModel(data);
+        nuevoPerfil.save(function (err, save) {
+            if (err) {
+                res.status(500);
+                res.json({ code: 500, err });
+            } else {
+                fs.createReadStream('../uploads/' + req.files[x].filename).pipe(fs.createWriteStream(path.join(Path2, req.files[x].originalname)));
+                fs.unlink('../uploads/' + req.files[x].filename);
+                res.json({ ok: true, message: 'Se a guardado con exito', save });
+            }
+        });
+    } else {
+        res.status(400);
+        res.json({err:{code: 400,  message: 'Faltan datos', data}});
+    }
+};
+PostController.getPhoto = function(req, res){
+    ImagePerfil.findOne({'usuario': req.user.local.usuario}, function(err, image){
+        if(err){
+            res.status(500);
+            res.json({code: 500, err});
+        } else { 
+            res.json({ok: true, image});
+        }
+    })
 };
 module.exports = PostController;	

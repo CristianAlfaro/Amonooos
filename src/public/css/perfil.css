@@ -91,3 +91,17 @@ main{
     width: 40%;
     border: 0;
 }
+
+.fotoPerfil{
+    height: auto;
+    width: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fotoperfil{
+    width: 100%;
+    height: 2em;
+    border-radius: 100%;
+}
