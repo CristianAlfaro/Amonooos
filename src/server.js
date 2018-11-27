@@ -3,6 +3,7 @@ const app = express();
 
 
 const path = require('path');
+const server = require('http').Server(app);
 const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
@@ -10,14 +11,18 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const io =  require('socket.io')(server);
+const socket = require('./sockets')(io);
+
+
+require('./config/passport')(passport);
+
 
 const { url } = require('./config/database');
 
 mongoose.connect(url, {
     useMongoClient: true
 });
-
-require('./config/passport')(passport);
 
 app.set('port', process.env.PORT || 8010);
 app.set('views', path.join(__dirname, 'views'));
@@ -42,7 +47,6 @@ require('./routes/routes')(app, passport);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.listen(app.get('port'), () => {
-    console.log('RED SOCIAL corriendo en http://localhost:8010/amonooos')
-})
+server.listen(app.get('port'), () => {
+    console.log('RED SOCIAL corriendo en http://localhost:8010/')
+});

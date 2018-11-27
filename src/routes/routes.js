@@ -9,11 +9,11 @@ const Image = require('../models/post');
 
 module.exports = (app, passport) => {
 
-    app.get('/amonooos', (req, res) => {
+    app.get('/', (req, res) => {
         res.render('index');
     });
 
-    app.post('/amonooos', passport.authenticate('local-login', {
+    app.post('/', passport.authenticate('local-login', {
         successRedirect: '/profile',
         failureRedirect: '/login',
         failureFlash: true
@@ -21,37 +21,37 @@ module.exports = (app, passport) => {
 
     //LOGIN
 
-    app.get('/amonooos/login/', (req, res) => {
+    app.get('/login/', (req, res) => {
         res.render('login', {
             message: req.flash('loginMessage')
         });
 
     });
 
-    app.post('/amonooos/login', passport.authenticate('local-login', {
-        successRedirect: '/amonooos/profile',
-        failureRedirect: '/amonooos/login',
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect: '/profile',
+        failureRedirect: '/login',
         failureFlash: true
     }));
 
     //SIGN UP
 
-    app.get('/amonooos/signup', (req, res) => {
+    app.get('/signup', (req, res) => {
         res.render('signup', {
             message: req.flash('signupMessage')
         });
 
     });
 
-    app.post('/amonooos/signup', passport.authenticate('local-signup', {
-        successRedirect: '/amonooos/profile',
-        failureRedirect: '/amonooos/signup',
+    app.post('/signup', passport.authenticate('local-signup', {
+        successRedirect: '/profile',
+        failureRedirect: '/signup',
         failureFlash: true
     }));
 
     //PROFILE
 
-    app.get('/amonooos/profile', isLoggedIn, (req, res) => {
+    app.get('/profile', isLoggedIn, (req, res) => {
         res.render('profile', {
             user: req.user
         });
@@ -59,39 +59,51 @@ module.exports = (app, passport) => {
 
     //LOG OUT
 
-    app.get('/amonooos/logout', (req, res) => {
+    app.get('/logout', (req, res) => {
         req.logout();
-        res.redirect('/amonooos');
+        res.redirect('/');
     });
 
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated()) {
             return next();
         }
-        return res.redirect('/amonooos');
+        return res.redirect('/');
     }
 
     //UPLOAD PHOTO
 
-    app.post('/amonooos/profile/upload',upload.array('foto', 1), PostController.create);
+    app.post('/profile/upload',upload.array('foto', 1), PostController.create);
 
     // GET PHOTOS
 
-    app.get('/amonooos/profile/fotos', PostController.mostrar);
+    app.get('/profile/fotos/', PostController.mostrar);
 
     //DELETE PHOTO
 
-    app.delete('/amonooos/profile/delete/:id', PostController.delete);
+    app.delete('/profile/delete/:id', PostController.delete);
 
     //GET USER
 
-    app.get('/amonooos/profile/user' , PostController.usuario);
+    app.get('/profile/user' , PostController.usuario);
 
     //UPLOAD PROFILE PHOTO
 
-    app.post('/amonooos/profile/user/photo',upload.array('foto', 1), PostController.perfilfoto);
+    app.post('/profile/user/photo',upload.array('foto', 1), PostController.perfilfoto);
 
     //GET USER PROFILE PHOTO
 
-    app.get('/amonooos/profile/user/photo', PostController.getPhoto);
+    app.get('/profile/user/photo', PostController.getPhoto);
+
+    //chat
+    app.get('/chat', isLoggedIn, (req, res) => {
+        res.render('chat', {
+            user: req.user
+        });
+    });
+    app.post('/chat', passport.authenticate('local-login', {
+        successRedirect: '/chat',
+        failureRedirect: '/',
+        failureFlash: true
+    }));
 };
