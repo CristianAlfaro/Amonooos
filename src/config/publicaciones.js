@@ -19,6 +19,6 @@ postController.upload = function (req, res, next) {
     }
     var pagina = '<!doctype html><html><head></head><body>' +
         '<p>Se subieron las fotos</p>' +
-        '<br><a href="/amonooos/profile/">Retornar</a></body></html>';
+        '<br><a href="/profile/">Retornar</a></body></html>';
     res.send(pagina);
 }

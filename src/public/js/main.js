@@ -41,7 +41,7 @@ let app = {
             method: 'POST',
             body: formData
         };       
-        fetch('/amonooos/profile/upload', options).then(res => res.json())
+        fetch('/profile/upload', options).then(res => res.json())
         .then(_data => {
             if(_data.ok) {
                 newPost(_data.save)
@@ -51,7 +51,7 @@ let app = {
         });
     },
     loadContent: function (newPost) {
-        fetch('/amonooos/profile/fotos', {
+        fetch('/profile/fotos', {
                 method: 'GET'
             }).then(res => {
                 return res.json()
@@ -67,7 +67,7 @@ let app = {
     },
     deletePost: (event, data, div, post) => {
         event.preventDefault();
-        fetch('/amonooos/profile/delete/' + data._id, {
+        fetch('/profile/delete/' + data._id, {
             method: 'DELETE'
         }).then(res => res.json())
         .then(res => {
@@ -79,7 +79,7 @@ let app = {
         })
     },
     getusuario: function(cb) {
-        fetch('/amonooos/profile/user', {
+        fetch('/profile/user', {
             method: 'get'
         }).then (res => res.json()).then(data =>{
             if(data.ok){

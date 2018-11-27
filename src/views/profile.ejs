@@ -36,13 +36,16 @@
                         <a class="dropdown-item" href="#">Settings</a>
                         <a class="dropdown-item" href="#">Another action</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/amonooos/logout">log out</a>
+                        <a class="dropdown-item" href="/logout">log out</a>
                     </div>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="fas fa-search"></span></button>
+                <a href="/chat" class="btn btn-light btn-lg">
+                    <span class="fa fa-user"></span> chat
+                </a>
             </form>
         </div>
     </nav>
@@ -76,7 +79,7 @@
                     </div>
                 </div>
                 <main>
-                    <form action="/amonooos/profile/upload", method="POST", enctype="multipart/form-data", name="postForm" class="formulario">
+                    <form action="/profile/upload", method="POST", enctype="multipart/form-data", name="postForm" class="formulario">
                         <input type="text" name="comentario" placeholder="comment something">
                         <input type="file" name="foto" value="Foto" id="fotoPost">
                         <input type="submit"> 
