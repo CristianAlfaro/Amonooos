@@ -3,7 +3,14 @@ var upload = multer({ dest: '../uploads/' });
 var path = require('path');
 var fs = require('fs');
 var Path = path.join(__dirname, "..", "public", "photos");
-PostController =  require ('../config/postControllers');
+PostController = require('../config/postControllers');
+
+
+var session = require('express-session');
+var status = require('../models/status');
+var notif = require('../models/notificaciones');
+var user = require('../models/user');
+var message = require('../models/mensajes');
 
 const Image = require('../models/post');
 
@@ -73,7 +80,7 @@ module.exports = (app, passport) => {
 
     //UPLOAD PHOTO
 
-    app.post('/profile/upload',upload.array('foto', 1), PostController.create);
+    app.post('/profile/upload', upload.array('foto', 1), PostController.create);
 
     // GET PHOTOS
 
@@ -85,11 +92,11 @@ module.exports = (app, passport) => {
 
     //GET USER
 
-    app.get('/profile/user' , PostController.usuario);
+    app.get('/profile/user', PostController.usuario);
 
     //UPLOAD PROFILE PHOTO
 
-    app.post('/profile/user/photo',upload.array('foto', 1), PostController.perfilfoto);
+    app.post('/profile/user/photo', upload.array('foto', 1), PostController.perfilfoto);
 
     //GET USER PROFILE PHOTO
 
