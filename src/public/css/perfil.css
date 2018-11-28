@@ -103,7 +103,7 @@ main{
 
 .fotoPerfil{
     height: auto;
-    width: 2em;
+    width: 2.5em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -114,7 +114,7 @@ main{
 
 .fotoperfil{
     width: 100%;
-    height: 2em;
+    height: 2.5em;
     border-radius: 100%;
 }
 
@@ -158,18 +158,31 @@ span.like{
 span.like:hover{
     color: red;
     transition: all 0.5s;
-    float: left;
+
 }
 
-#fotoPerfil{
+span.dislike{
+    font-size: 1.7em;
+    margin: 0.5em 1em 0;
+    transition: all 0.2s;
+}
+
+span.dislike:hover{
+    color: red;
+    transition: all 0.5s;
+}
+
+#fotoPerfil, #fotoFondo{
     opacity: 0;
     width: 100%;
     height: 100%;
     position: relative;
 }
 
+
+
 .texto{
-    position: relative;
+    position: absolute;
     margin: 0%;
 }
 
@@ -179,5 +192,10 @@ span.like:hover{
 
 .submitPP{
     width: 76.5%;
+}
+
+.fontcolor{
+    width: 70%;
+    border: 0;
 }
 

@@ -58,7 +58,7 @@ module.exports = (app, passport) => {
         failureFlash: true
     }));
 
-    //PROFILE
+    //HOME
 
     app.get('/home', isLoggedIn, (req, res) => {
         res.render('home', {
@@ -68,6 +68,12 @@ module.exports = (app, passport) => {
 
     app.get('/profile', isLoggedIn, (req, res) => {
         res.render('profile', {
+            user: req.user
+        });
+    })
+
+    app.get('/followed', isLoggedIn, (req,res) => {
+        res.render('followed', {
             user: req.user
         });
     })
@@ -128,10 +134,8 @@ module.exports = (app, passport) => {
         failureFlash: true
     }));
 
-<<<<<<< HEAD
     //GET ALL USER 
     app.get('/profile/user/users', PostController.perfiles);
-=======
 /*
     //nombre de usuario
 
@@ -353,5 +357,4 @@ module.exports = (app, passport) => {
         });
     });
     */
->>>>>>> 7b6ea98c28dfac608d16151107f6a3f7fed8c613
 };

@@ -7,7 +7,7 @@ let app = {
     profilePhoto: "",
     init: function () {
         
-        this.getusers();
+        this.getusers(this.newPost);
         this.getfoto(() => {
             console.log(this.profilePhoto.image);
             document.getElementById('foto_perfil').src = "/ProfilePhotos/" + this.profilePhoto.image;
@@ -35,9 +35,7 @@ let app = {
         );
     },
     addEvents: function () {
-        document.postForm.addEventListener("submit", (event) => {
-            this.createPost(event, this.newPost, this.profilePhoto);
-        });
+       
         if (this.profilePhoto) {
             console.log("puedes cambiar foto");
             document.formProfile.addEventListener("submit", (event) => {
@@ -51,34 +49,18 @@ let app = {
 
     },
     newPost: function (data, foto) {
-        let post = document.getElementsByClassName('publicaciones')[0];
-        let div = document.createElement("div");
-        div.classList.add('post');
-        if (data.comentario) {
-            div.innerHTML = `
-            <div class="encabezado">
-            <img class = "foto fotoperfilsmall" src= "/img/user.png"> 
-            <h3> ${data.usuario} ha publicado 1 foto </h3>
-            </div>
-            <p> ${data.comentario} </p>
-            <img src= "/photos/${data.image}"> 
-            <div class= "opciones">
-                <a href="#" class="like"> <span class="fas fa-heart like"></span> </a> 
-                <a href="#" class="dislike"> <span class="fas fa-heartbeat dislike"></span> </a>
-            </div>
-        `;
-        } else {
-            div.innerHTML = `
-            <h3> ${data.usuario} ha publicado 1 foto</h3>
-            <img src= "/photos/${data.image}"> 
-            <div class= "opciones">
-                <a href="#" class="like"> <span class="fas fa-heart like"></span> </a> 
-                <a href="#" class="dislike"> <span class="fas fa-heartbeat dislike"></span> </a>
-            </div>
-        `;
+        let friends = document.getElementsByClassName('followed')[0];
+        if (data) {
+            for (let index = 0; index < data.users.length; index++) {
+                let tr = document.createElement("tr");
+                tr.innerHTML = `<td>${data.users[index]._id} </td>
+                        <td>${data.users[index].local.usuario}</td>
+                        <td>"yujuuuu"</td>
+                `
+                friends.appendChild(tr);
+            }
         }
-
-        post.appendChild(div);
+        
     },
     createPost: function (event, newPost, foto) {
         event.preventDefault();
@@ -191,7 +173,7 @@ let app = {
             });
 
     },
-    getusers: function(){
+    getusers: function(newPost){
         fetch('/profile/user/users', {
             method: 'get'
         }).then(res => res.json()).then(data => {
@@ -199,6 +181,8 @@ let app = {
                 for (let index = 0; index < data.users.length; index++) {
                     console.log(data.users[index].local.usuario);
                 }
+                newPost(data, 1);
+
             }
         });
     }
