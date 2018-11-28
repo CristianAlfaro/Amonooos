@@ -34,10 +34,14 @@ let app = {
             this.addEvents();
         }
         );
+
+        
     },
     addEvents: function () {
         document.postForm.addEventListener("submit", (event) => {
             this.createPost(event, this.newPost, this.profilePhoto);
+            this.createFondo(event, this.fondoPhoto);
+            
         });
         if (this.profilePhoto) {
             console.log("puedes cambiar foto");
@@ -49,6 +53,18 @@ let app = {
                 this.createPhoto(event);
             });
         }
+        //para el fondo
+        if (this.fondoPhoto) {
+            console.log("puedes cambiar fondo");
+            document.formBack.addEventListener("submit", (event) => {
+                this.updateFondo(event);
+            });
+        } else {
+            document.formProfile.addEventListener("submit", (event) => {
+                this.createFondo(event);
+            });
+        }
+        //
 
     },
     newPost: function (data, foto) {

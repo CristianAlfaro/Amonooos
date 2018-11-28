@@ -124,6 +124,7 @@ module.exports = (app, passport) => {
 
     //PUT USER PROFILE PHOTO
 
+    //console.log(this.fondoPhoto.image);
     app.put('/profile/user/photo', upload.array('foto', 1), PostController.updatePhoto);
 
     //upload background photo
