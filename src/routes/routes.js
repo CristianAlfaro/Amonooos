@@ -154,4 +154,6 @@ module.exports = (app, passport) => {
 
     //GET ALL USER 
     app.get('/profile/user/users', PostController.perfiles);
+
+    
 };
