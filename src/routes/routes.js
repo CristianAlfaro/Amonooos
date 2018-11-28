@@ -22,6 +22,12 @@ module.exports = (app, passport) => {
         res.render('index');
     });
 
+    //Agregando ruta de inicio
+    app.get('/inicio', (req, res) => {
+        res.render('inicio');
+    });
+    //
+
     app.post('/', passport.authenticate('local-login', {
         successRedirect: '/profile',
         failureRedirect: '/login',
@@ -119,6 +125,18 @@ module.exports = (app, passport) => {
     //PUT USER PROFILE PHOTO
 
     app.put('/profile/user/photo', upload.array('foto', 1), PostController.updatePhoto);
+
+    //upload background photo
+
+    app.post('/profile/user/fondo', upload.array('foto', 1), PostController.fondofoto);
+
+    //get user background photo
+
+    app.get('/profile/user/fondo', PostController.getFondo);
+
+    //put user background photo
+
+    app.put('/profile/user/fondo', upload.array('foto', 1), PostController.updateFondo);
 
     //CHAT
 

@@ -1,0 +1,156 @@
+
+:root {
+    font-size: calc(0.3em + 1vw);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.color{
+    background-color: #a3a3a570 !important;
+}
+
+.fondo{
+    
+    background-image: url('../img/montania.jpg');
+    /*Photo by Ruvim Noga on Unsplash*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+.btn {
+    color: rgb(255, 166, 0);
+    background-color: transparent;
+    border-radius: 10px;
+    border-color: rgba(100, 104, 107, 0.582);
+    -webkit-animation-delay: 2.5s;
+}
+
+.btn:hover {
+    background-color: rgb(255, 166, 0);
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: rgba(255, 254, 254, 0.582);
+    color: rgb(112, 112, 112);
+    -webkit-animation-delay: 2.5s;
+}
+
+.header-fixed {
+    position: fixed;
+    width: 100%;
+}
+
+.first-container {
+    display: grid;
+    grid-template-columns: repeat(3,20% 60% 20%);
+    padding-top: 10%;
+}
+
+.container-fluid {
+    position: fixed;
+}
+
+.sidebar-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    position: fixed;
+}
+/*
+.icon-container {
+    margin-top: -59px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+}*/
+
+
+
+.icon-fixed {
+    position: fixed;
+}
+
+.inicio-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.form-publicacion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+}
+
+.publication-container, .publicaciones {
+    margin: 2.5%;
+    padding: 2.5%;
+    background-color: rgba(70, 68, 66, 0.555);
+    border-radius: 10%;
+}
+
+.publicaciones p {
+    margin: 2.5%;
+    padding: 2.5%;
+    background-color: rgb(255, 255, 255);
+}
+
+
+
+.publication-container i, .publicaciones i {
+    color: rgb(255, 166, 0);
+}
+
+.nav-publi-top ul {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-publi-bottom ul {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.nav-publi-top li, .nav-publi-bottom{
+    color: rgb(255, 255, 255);
+}
+
+.publi {
+    margin: 5%, 5%, 5%, 5%;
+}
+
+html{
+    height: 100%;
+}
+/*
+@media (min-width: 576px) { 
+    
+    .icon-container {
+        margin-top: -10%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: left;
+    }
+
+    .icon-fixed {
+        position: fixed;
+    }
+}*/

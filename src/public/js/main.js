@@ -5,6 +5,7 @@ window.onload = () => {
 let app = {
     user: "",
     profilePhoto: "",
+    fondoPhoto: "",
     init: function () {
         
         this.getusers();
@@ -201,6 +202,62 @@ let app = {
                 }
             }
         });
-    }
+    },
+    //obteniendo, creando y actualizando foto de fondo
+    getfondo: function (cb) {
+        fetch('/profile/user/fondo', {
+            method: 'get'
+        }).then(res => res.json())
+        .then(data => {
+            if (data.ok) {
+                this.fondoPhoto = data.image;
+                cb();
+            }
+        });
+    },
+    createFondo: function (event) {
+        event.preventDefault();
+        var formData3 = new FormData(document.formProfile);//en ves de formProfile ira el name del form de fondo
+        for (var value of formData3.values()) {
+            console.log(value);
+        }
+        let options = {
+            method: 'POST',
+            body: formData3
+        };
+        //action del form en el fetch
+        fetch('/profile/user/fondo', options).then(res => res.json())
+            .then(_data => {
+                if (_data.ok) {
+                    console.log("se subio con exito el fondo");
+                    location.reload(true);
+                } else {
+                    document.getElementsByClassName("errors")[0].innerText = "No se pudo guardar";
+                }
+            
+            });
 
-};
+    },
+    updateFondo: function (event) {
+        event.preventDefault();
+        var formData3 = new FormData(document.formProfile);//usar nombre del form fondo!
+        for (var value of formData3.values()) {
+            console.log(value);
+        }
+        let options = {
+            method: 'PUT',
+            body: formData3
+        };
+        //action del form en el fetch
+        fetch('/profile/user/fondo', options).then(res => res.json())
+            .then(_data => {
+                if (_data.ok) {
+                    console.log("se subio con exito el fondo");
+                    location.reload(true);
+                } else {
+                    document.getElementsByClassName("errors")[0].innerText = "No se pudo guardar";
+                }
+            
+            });
+    }
+}
