@@ -13,6 +13,12 @@ module.exports = (app, passport) => {
         res.render('index');
     });
 
+    //Agregando ruta de inicio
+    app.get('/inicio', (req, res) => {
+        res.render('inicio');
+    });
+    //
+
     app.post('/', passport.authenticate('local-login', {
         successRedirect: '/profile',
         failureRedirect: '/login',
