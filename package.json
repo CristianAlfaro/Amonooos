@@ -2,10 +2,10 @@
   "name": "red_social",
   "version": "1.0.0",
   "description": "Proyeto de programacion Web, Red Social Quahul",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon src/server.js",
-    "chat": "nodemon chat/src/index.js"
+    "chat": "nodemon /src/server.js"
   },
   "author": "Cristian Alfaro",
   "license": "ISC",
