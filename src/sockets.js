@@ -6,8 +6,6 @@ io.on('connection',socket =>
         //console.log(data);
         io.sockets.emit('nuevo',data);//evento enviado por el servidor
     })
-
-
 }
 )
 
