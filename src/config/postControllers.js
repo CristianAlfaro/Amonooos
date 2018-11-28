@@ -16,7 +16,7 @@ PostController.create = function (req, res) {
     let data = {
         usuario: req.user.local.usuario,
         image: req.files[x].originalname,
-        comentario: req.body.comentario
+        comentario: req.body.comentario[x]
     };
     if (data.usuario && data.image && data.usuario != '' && data.image != '') {
         let nuevoPost = new postModel(data);
@@ -36,8 +36,6 @@ PostController.create = function (req, res) {
     }
 };
 PostController.mostrar = function (req,res){
-    //var contenido = document.getElementsByClassName('publicaciones');
-    //console.log(contenido);
     Image.find({'usuario': req.user.local.usuario},function(err,images){
         if(err){
             res.status(500);

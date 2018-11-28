@@ -64,7 +64,7 @@ let app = {
             method: 'POST',
             body: formData
         };       
-        fetch('/amonooos/profile/upload', options).then(res => res.json())
+        fetch('/profile/upload', options).then(res => res.json())
         .then(_data => {
             if(_data.ok) {
                 newPost(_data.save);
