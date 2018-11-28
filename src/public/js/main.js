@@ -205,7 +205,7 @@ let app = {
     },
     //obteniendo, creando y actualizando foto de fondo
     getfondo: function (cb) {
-        fetch('/profile/user/fondo', {
+        fetch('/profile/user/background', {
             method: 'get'
         }).then(res => res.json())
         .then(data => {
@@ -217,7 +217,7 @@ let app = {
     },
     createFondo: function (event) {
         event.preventDefault();
-        var formData3 = new FormData(document.formProfile);//en ves de formProfile ira el name del form de fondo
+        var formData3 = new FormData(document.formBack);//en ves de formProfile ira el name del form de fondo
         for (var value of formData3.values()) {
             console.log(value);
         }
@@ -226,7 +226,7 @@ let app = {
             body: formData3
         };
         //action del form en el fetch
-        fetch('/profile/user/fondo', options).then(res => res.json())
+        fetch('/profile/user/background', options).then(res => res.json())
             .then(_data => {
                 if (_data.ok) {
                     console.log("se subio con exito el fondo");
@@ -240,7 +240,7 @@ let app = {
     },
     updateFondo: function (event) {
         event.preventDefault();
-        var formData3 = new FormData(document.formProfile);//usar nombre del form fondo!
+        var formData3 = new FormData(document.formBack);//usar nombre del form fondo!
         for (var value of formData3.values()) {
             console.log(value);
         }
@@ -249,7 +249,7 @@ let app = {
             body: formData3
         };
         //action del form en el fetch
-        fetch('/profile/user/fondo', options).then(res => res.json())
+        fetch('/profile/user/background', options).then(res => res.json())
             .then(_data => {
                 if (_data.ok) {
                     console.log("se subio con exito el fondo");
