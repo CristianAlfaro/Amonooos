@@ -11,7 +11,7 @@ var status = require('../models/status');
 var notif = require('../models/notificaciones');
 var User = require('../models/user');
 var message = require('../models/mensajes');
-
+//var chat=require('../models/chatbase')
 
 const Image = require('../models/post');
 
@@ -209,6 +209,8 @@ module.exports = (app, passport) => {
             res.redirect('/login/');
         }
     });
+    //CHAT PAPA!!!
+   // app.get()
 
     //Enviar solicitud de amistad
 

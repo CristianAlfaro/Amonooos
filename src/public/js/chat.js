@@ -15,9 +15,9 @@ $(function(){
         $messageBox.val('');    
     });
     //recibir del servidor
-    socket.on('nuevo',function(data){
-        console.log(data);
-        $chat.append(data +'<br/>');
+    socket.on('nuevo',function(req,res){
+        console.log(req);
+        $chat.append(req +'<br/>');
     });
 
 
