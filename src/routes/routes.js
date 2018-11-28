@@ -154,7 +154,7 @@ module.exports = (app, passport) => {
 
     //GET ALL USER 
     app.get('/profile/user/users', PostController.perfiles);
-/*
+
     //nombre de usuario
 
     app.get('/profile/:username', function (req, res) {
@@ -374,5 +374,5 @@ module.exports = (app, passport) => {
             }
         });
     });
-    */
+    
 };
