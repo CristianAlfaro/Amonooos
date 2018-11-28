@@ -29,7 +29,7 @@ module.exports = (app, passport) => {
     });
 
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect: '/profile',
+        successRedirect: '/home',
         failureRedirect: '/login',
         failureFlash: true
     }));
@@ -44,18 +44,24 @@ module.exports = (app, passport) => {
     });
 
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/profile',
+        successRedirect: '/home',
         failureRedirect: '/signup',
         failureFlash: true
     }));
 
     //PROFILE
 
+    app.get('/home', isLoggedIn, (req, res) => {
+        res.render('home', {
+            user: req.user
+        });
+    });
+
     app.get('/profile', isLoggedIn, (req, res) => {
         res.render('profile', {
             user: req.user
         });
-    });
+    })
 
     //LOG OUT
 
@@ -95,15 +101,24 @@ module.exports = (app, passport) => {
 
     app.get('/profile/user/photo', PostController.getPhoto);
 
-    //chat
+    //PUT USER PROFILE PHOTO
+
+    app.put('/profile/user/photo', upload.array('foto', 1), PostController.updatePhoto);
+
+    //CHAT
+
     app.get('/chat', isLoggedIn, (req, res) => {
         res.render('chat', {
             user: req.user
         });
     });
+
     app.post('/chat', passport.authenticate('local-login', {
         successRedirect: '/chat',
         failureRedirect: '/',
         failureFlash: true
     }));
+
+    //GET ALL USER 
+    app.get('/profile/user/users', PostController.perfiles);
 };

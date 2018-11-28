@@ -8,6 +8,7 @@ var Path = path.join(__dirname,"..", "public", "photos");
 var Path2 = path.join(__dirname,"..", "public", "ProfilePhotos");
 const Image = require('../models/post');
 const ImagePerfil = require('../models/perfil');
+const User = require('../models/user');
 
 const PostController = {};
 
@@ -45,6 +46,16 @@ PostController.mostrar = function (req,res){
         }
     });
 };
+PostController.perfiles = function (req, res){
+    User.find({},function(err,users){
+        if(err){
+            res.status(500);
+            res.json({code:500, err});
+        } else {
+            res.json({ok: true, users});
+        }
+    });
+};
 PostController.delete = function(req,res){
     postModel.findByIdAndRemove(req.params.id, function(err, eliminado){
         if (err) {
@@ -64,9 +75,8 @@ PostController.perfilfoto = function(req,res){
     var x = 0;
     let data = {
         usuario: req.user.local.usuario,
-        image: req.files[0].originalname,
+        image: req.files[x].originalname,
     };
-    console.log(data);
     if (data.usuario && data.image && data.usuario != '' && data.image != '') {
         let nuevoPerfil = new perfilModel(data);
         nuevoPerfil.save(function (err, save) {
@@ -94,4 +104,24 @@ PostController.getPhoto = function(req, res){
         }
     })
 };
+PostController.updatePhoto = function(req, res){
+    var x = 0;
+    let update = {
+        usuario: req.user.local.usuario,
+        image: req.files[x].originalname,
+    };
+
+    ImagePerfil.findOneAndUpdate({'usuario': req.user.local.usuario}, update, function(err, old){
+        if (err) {
+            res.status(500);
+            res.json({code:500, err});
+        } else {
+            fs.createReadStream('../uploads/' + req.files[x].filename).pipe(fs.createWriteStream(path.join(Path2, req.files[x].originalname)));
+            fs.unlink('../uploads/' + req.files[x].filename);
+            res.json({ok: true, old, update});
+        }
+    });
+
+}
+
 module.exports = PostController;	
