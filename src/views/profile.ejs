@@ -14,7 +14,7 @@
 </head>
 
 <body class="fondo">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light color">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light color fixed">
         <a class="navbar-brand" data-target="#sidebar" data-toggle="collapse" aria-expanded="false" href="#">Amonooos</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
                     <img class="fotoperfil" id="foto_perfil" src="/img/user.png" alt="foto de perfil">
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Home </a>
+                    <a class="nav-link" href="/home"> Home </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -56,7 +56,7 @@
 
     <div class="container-fluid">
         <div class="row d-flex d-md-block flex-nowrap wrapper">
-            <div class="col-md-2 float-left col-1 pl-0 pr-0 collapse width " id="sidebar">
+            <div class="col-md-2 float-left col-1 pl-0 pr-0 collapse width fixed2" id="sidebar">
                 <div class="list-group border-0 card text-center text-md-left">
                     <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
                         data-parent="#sidebar" aria-expanded="false"><i class="fa fa-user"></i> <span class="d-none d-md-inline">Informacion</span>
@@ -96,6 +96,8 @@
                 </div>
             </div>
             <main>
+                    <img class="foto fotoperfilbig" id="foto_perfil" src="/img/user.png" alt="foto de perfil">
+
                 <form action="/profile/upload"  method="POST"  name="postForm" class="formulario">
                     <input type="text" name="comentario" placeholder="comment something">
                     <input type="file" name="foto" value="Foto" id="fotoPost">
@@ -111,7 +113,6 @@
     <div class="publicaciones">
 
     </div>
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>

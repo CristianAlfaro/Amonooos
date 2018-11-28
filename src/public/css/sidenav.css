@@ -32,26 +32,10 @@
     background-color: rgba(34, 34, 34, 0.541);
 }
 
-/* closed state*/ 
-#sidebar .list-group .list-group-item[aria-expanded="false"]::after {
-  content: " \f0d7";
-  font-family: FontAwesome;
-  display: inline;
-  text-align: right;
-  padding-left: 5px;
-}
-
 
 /* open state */
 #sidebar .list-group .list-group-item[aria-expanded="true"] {
   background-color: #222;
-}
-#sidebar .list-group .list-group-item[aria-expanded="true"]::after {
-  content: " \f0d8";
-  font-family: FontAwesome;
-  display: inline;
-  text-align: right;
-  padding-left: 5px;
 }
 
 /* level 1*/

@@ -27,6 +27,7 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 3em;
 }
 
 .post{
@@ -46,7 +47,7 @@ main{
 
 .post:hover{
     transition: all 0.5s;
-    background-color: rgba(51, 3, 3, 0.534);
+    background-color: rgba(51, 3, 3, 0.445);
 }
 
 .post img{
@@ -56,6 +57,14 @@ main{
 .post a{
     color: white;
     font-size: 1em;
+}
+
+.post p{
+    color: red;
+}
+
+.post h3{
+    color: aliceblue;
 }
 
 .formulario{
@@ -98,6 +107,9 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .fotoperfil{
@@ -105,3 +117,67 @@ main{
     height: 2em;
     border-radius: 100%;
 }
+
+.fotoperfilbig {
+    width: 18em;
+    height: 18em;
+    border-radius: 100%;
+    margin-top: 2em;
+}
+
+.post img.fotoperfilsmall {
+    width: 3em;
+    height: 3em;
+    border-radius: 100%;
+}
+
+.encabezado {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+}
+
+.fixed{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 3em;
+}
+
+.fixed2{
+    position: fixed;
+}
+
+span.like{
+    font-size: 1.7em;
+    margin: 0.5em 1em 0;
+    transition: all 0.2s;
+}
+
+span.like:hover{
+    color: red;
+    transition: all 0.5s;
+    float: left;
+}
+
+#fotoPerfil{
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.texto{
+    position: relative;
+    margin: 0%;
+}
+
+.div{
+    padding: 0%;
+}
+
+.submitPP{
+    width: 76.5%;
+}
+

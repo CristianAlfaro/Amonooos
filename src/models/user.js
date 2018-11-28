@@ -9,9 +9,13 @@ const userSchema = new mongoose.Schema({
             type: String,
             unique: true,
             index: true
-        }
+        },
+        friends: [String],
+        pending: [String],
+        waiting: [String]
     }
 });
+
 
 userSchema.methods.generateHash = function(password){
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);

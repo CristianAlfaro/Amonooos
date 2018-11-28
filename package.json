@@ -4,9 +4,8 @@
   "description": "Proyeto de programacion Web, Red Social Quahul",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "chat": "nodemon chat/src/index.js",
-    "dev": "nodemon src/server.js"
+    "start": "nodemon src/server.js",
+    "chat": "nodemon chat/src/index.js"
   },
   "author": "Cristian Alfaro",
   "license": "ISC",
