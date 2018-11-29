@@ -6,8 +6,7 @@ let app = {
     user: "",
     profilePhoto: "",
     init: function () {
-        
-        this.getusers(this.newPost);
+
         this.getfoto(() => {
             console.log(this.profilePhoto.image);
             document.getElementById('foto_perfil').src = "/ProfilePhotos/" + this.profilePhoto.image;
@@ -15,13 +14,14 @@ let app = {
             for (let index = 0; index < fotos.length; index++) {
                 fotos[index].src = "/ProfilePhotos/" + this.profilePhoto.image;
             }
-           /* var imagen = document.getElementsByClassName("fondo")[0];
-            var url = "/ProfilePhotos/" + this.profilePhoto.image;
-            imagen.style.backgroundImage = 'url('+url+')'; */
+            /* var imagen = document.getElementsByClassName("fondo")[0];
+             var url = "/ProfilePhotos/" + this.profilePhoto.image;
+             imagen.style.backgroundImage = 'url('+url+')'; */
         });
         this.getusuario(() => {
+            this.getusers(this.newPost, this.user, this.followUser);
             this.getfoto();
-            this.loadContent(this.newPost, this.profilePhoto);
+            this.loadContent(this.newPost, this.profilePhoto, this.followUser);
             this.getfoto(() => {
                 console.log(this.profilePhoto.image);
                 document.getElementById('foto_perfil').src = "/ProfilePhotos/" + this.profilePhoto.image;
@@ -35,34 +35,33 @@ let app = {
         );
     },
     addEvents: function () {
-       
-        if (this.profilePhoto) {
-            console.log("puedes cambiar foto");
-            document.formProfile.addEventListener("submit", (event) => {
-                this.updatePhoto(event);
-            });
-        } else {
-            document.formProfile.addEventListener("submit", (event) => {
-                this.createPhoto(event);
-            });
-        }
+
 
     },
-    newPost: function (data, foto) {
+    newPost: function (data, user, followUser) {
+        console.log(data);
         let friends = document.getElementsByClassName('followed')[0];
         if (data) {
             for (let index = 0; index < data.users.length; index++) {
+                if(!(data.users[index].usuario == user)){
                 let tr = document.createElement("tr");
-                tr.innerHTML = `<td>${data.users[index]._id} </td>
-                        <td>${data.users[index].local.usuario}</td>
-                        <td>"yujuuuu"</td>
+                tr.innerHTML = `
+                <td class= "center"> <img class ="fotoperfilsmall" src= "/ProfilePhotos/${data.users[index].image}"> </td>
+                <td>${data.users[index].usuario}</td>
+                <td><a href="#" class="follow">follow</a></td>
                 `
                 friends.appendChild(tr);
+                tr.getElementsByClassName("follow")[0].addEventListener("click", (event) => {
+                    followUser(event, data.users[index].usuario, data.users[index].image);
+                    friends.removeChild(tr);
+                });
+                }
             }
+
         }
-        
+
     },
-    createPost: function (event, newPost, foto) {
+    createPost: function (event, newPost, foto, followUser) {
         event.preventDefault();
         var formData = new FormData(document.postForm);
         formData.append("comentario", document.postForm.comentario.value);
@@ -76,14 +75,14 @@ let app = {
         fetch('/profile/upload', options).then(res => res.json())
             .then(_data => {
                 if (_data.ok) {
-                    newPost(_data.save, foto);
+                    newPost(_data.save, foto, followUser);
                     location.reload(true);
                 } else {
                     document.getElementsByClassName("errors")[0].innerText = "No se pudo guardar";
                 }
             });
     },
-    loadContent: function (newPost, foto) {
+    loadContent: function (newPost, foto, followUser) {
         fetch('/profile/fotos', {
             method: 'GET'
         }).then(res => {
@@ -93,7 +92,7 @@ let app = {
 
                 if (data.ok) {
                     data.images.reverse().forEach(element => {
-                        newPost(element, foto);
+                        newPost(element, foto, followUser);
                     });
                 }
             })
@@ -127,7 +126,7 @@ let app = {
         }).then(res => res.json()).then(data => {
             if (data.ok) {
                 this.profilePhoto = data.image;
-                
+
                 cb();
             }
         });
@@ -173,18 +172,42 @@ let app = {
             });
 
     },
-    getusers: function(newPost){
-        fetch('/profile/user/users', {
+    getusers: function (newPost, user, followUser) {
+        fetch('/profile/user/allusers', {
             method: 'get'
         }).then(res => res.json()).then(data => {
-            if(data.ok){    
+            if (data.ok) {
                 for (let index = 0; index < data.users.length; index++) {
-                    console.log(data.users[index].local.usuario);
+                    console.log(data.users[index].usuario);
                 }
-                newPost(data, 1);
+                newPost(data, user, followUser);
 
             }
         });
+    },
+    followUser: function (event, follow, photo){
+        event.preventDefault();
+        let dataForm = {
+            followed: follow,
+            foto: photo
+        };
+        let options = {
+            method: 'POST',
+            body: JSON.stringify(dataForm),
+            headers:{
+                'Content-type': 'application/json'
+            }
+        };
+        fetch('/profile/user/follow',options).then(res => res.json())
+        .then(_data => {
+            if (_data.ok) {
+                console.log("ahora son amigos");
+            } else {
+                document.getElementsByClassName("errors")[0].innerText = "No se pudo guardar";
+            }
+        });
     }
+
+
 
 };

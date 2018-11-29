@@ -5,12 +5,6 @@ var fs = require('fs');
 var Path = path.join(__dirname, "..", "public", "photos");
 PostController = require('../config/postControllers');
 
-
-var session = require('express-session');
-var status = require('../models/status');
-var notif = require('../models/notificaciones');
-var User = require('../models/user');
-var message = require('../models/mensajes');
 //var chat=require('../models/chatbase')
 
 const Image = require('../models/post');
@@ -78,8 +72,8 @@ module.exports = (app, passport) => {
         });
     })
 
-    app.get('/followed', isLoggedIn, (req,res) => {
-        res.render('followed', {
+    app.get('/alluser', isLoggedIn, (req,res) => {
+        res.render('allUser', {
             user: req.user
         });
     })
@@ -154,6 +148,14 @@ module.exports = (app, passport) => {
     }));
 
     //GET ALL USER 
+    app.get('/profile/user/allusers', PostController.perfiles);
+
+    //ADD FOLLOWED
+    app.post('/profile/user/follow', PostController.followed);
+
+    //GET FOLLOWED
+   // app.get('/profile/user/followed', PostController.getfollowed);
+
     app.get('/profile/user/users', PostController.perfiles);
 
     
