@@ -15,9 +15,12 @@ $(function(){
         $messageBox.val('');    
     });
     //recibir del servidor
-    socket.on('nuevo',function(data){
-        console.log(data);
-        $chat.append(data +'<br/>');
+    socket.on('nuevo',function(req,res){
+        console.log(req);
+       // $chat.append(req +'<br/>');
+        $('<li class="replies"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + req + '</p></li>').appendTo($('.messages ul'));
+        //$('<li class="replies"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + req + '</p></li>').appendTo($('.messages ul'));
+
     });
 
 

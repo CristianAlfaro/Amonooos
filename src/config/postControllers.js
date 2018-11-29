@@ -7,6 +7,7 @@ const mongoose = require('mongoose'),
     fs = require('fs');
 var Path = path.join(__dirname,"..", "public", "photos");
 var Path2 = path.join(__dirname,"..", "public", "ProfilePhotos");
+var Path3 = path.join(__dirname,"..", "public", "FondoPhotos");
 const Image = require('../models/post');
 const ImagePerfil = require('../models/perfil');
 const ImageFondo = require('../models/fondo');
@@ -133,13 +134,13 @@ PostController.fondofoto = function (req, res) {
         image: req.files[x].originalname,
     };
     if (data.usuario && data.image && data.usuario != '' && data.image != '') {
-        let nuevoFondo = new perfilModel(data);//
+        let nuevoFondo = new fondoModel(data);//
         nuevoFondo.save(function (err, save) {//
             if (err) {
                 res.status(500);
                 res.json({ code: 500, err });
             } else {
-                fs.createReadStream('../uploads/' + req.files[x].filename).pipe(fs.createWriteStream(path.join(Path2, req.files[x].originalname)));
+                fs.createReadStream('../uploads/' + req.files[x].filename).pipe(fs.createWriteStream(path.join(Path3, req.files[x].originalname)));
                 fs.unlink('../uploads/' + req.files[x].filename);
                 res.json({ ok: true, message: 'Se a guardado con exito', save });
             }
@@ -173,7 +174,7 @@ PostController.updateFondo = function (req, res) {
             res.status(500);
             res.json({code:500, err});
         } else {
-            fs.createReadStream('../uploads/' + req.files[x].filename).pipe(fs.createWriteStream(path.join(Path2, req.files[x].originalname)));
+            fs.createReadStream('../uploads/' + req.files[x].filename).pipe(fs.createWriteStream(path.join(Path3, req.files[x].originalname)));
             fs.unlink('../uploads/' + req.files[x].filename);
             res.json({ok: true, old, update});
         }
