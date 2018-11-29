@@ -11,7 +11,7 @@ var status = require('../models/status');
 var notif = require('../models/notificaciones');
 var User = require('../models/user');
 var message = require('../models/mensajes');
-
+//var chat=require('../models/chatbase')
 
 const Image = require('../models/post');
 
@@ -124,19 +124,20 @@ module.exports = (app, passport) => {
 
     //PUT USER PROFILE PHOTO
 
+    //console.log(this.fondoPhoto.image);
     app.put('/profile/user/photo', upload.array('foto', 1), PostController.updatePhoto);
 
     //upload background photo
 
-    app.post('/profile/user/fondo', upload.array('foto', 1), PostController.fondofoto);
+    app.post('/profile/user/background', upload.array('foto', 1), PostController.fondofoto);
 
     //get user background photo
 
-    app.get('/profile/user/fondo', PostController.getFondo);
+    app.get('/profile/user/background', PostController.getFondo);
 
     //put user background photo
 
-    app.put('/profile/user/fondo', upload.array('foto', 1), PostController.updateFondo);
+    app.put('/profile/user/background', upload.array('foto', 1), PostController.updateFondo);
 
     //CHAT
 
@@ -161,4 +162,7 @@ module.exports = (app, passport) => {
     //GET FOLLOWED
    // app.get('/profile/user/followed', PostController.getfollowed);
 
+    app.get('/profile/user/users', PostController.perfiles);
+
+    
 };

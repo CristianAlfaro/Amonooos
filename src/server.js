@@ -19,7 +19,11 @@ require('./config/passport')(passport);
 
 
 const { url } = require('./config/database');
-
+/*
+mongoose.connect('mongodb://localhost:27017/redsocial3',{
+    useNewUrlParser: true,
+    useCreateIndex: true
+});*/
 mongoose.connect(url, {
     useMongoClient: true
 });
