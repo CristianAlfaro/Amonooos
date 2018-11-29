@@ -26,18 +26,12 @@
 </head>
 
 <body class="fondo">
-<<<<<<< HEAD
-
-
-	
-=======
->>>>>>> fc129b882e06502e6df8e57a34a3c9b9e56e4b0b
 <div id="frame">
 	<div id="sidepanel">
 		<div id="profile">
 			<div class="wrap">
 				<img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-				<p><%= user.local.usuario %></p>
+				<p id='userActual'><%= user.local.usuario %></p>
 			</div>
 		</div>
 					<div id="contacts">
@@ -128,6 +122,7 @@
 									<img src="http://emilcarlsson.se/assets/charlesforstman.png" alt="" />
 									<div class="meta">
 											<p class="name"><%= user.local.usuario %></p>
+											<input type="hidden" id='idSesion' value="<%= user.local.usuario %>">
 											<p class="preview" id="chat" class="sent" class="blanco"></p>
 										</div>
 								</div>
@@ -161,6 +156,7 @@
 		<div class="message-input">
 			<div class="wrap">
 			<form action="" id="message-form" class="card-footer" >
+
 							<div class="input-group">
 							<input type="text" id="message" class="form-control"/>
 							<div class="input-group-append">

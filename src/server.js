@@ -46,7 +46,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-
+app.use((req,res,next)=>{
+    app.locals.signupMessage=req.flash('signupMessage');
+    app.locals.signinMessage=req.flash('signupMessage');
+    app.locals.user=req.user;
+    next();
+})
 require('./routes/routes')(app, passport);
 
 

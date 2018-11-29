@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 const Chat = require('./models/chatbase');
 const Post = require('./models/post');
-
 const postController = {};
 
-console.log(user.local.usuario);
+//console.log(user.local.usuario);
 
 module.exports= function(io,passport){//exporta la funcion
 io.on('connection',socket => {
@@ -13,11 +12,12 @@ io.on('connection',socket => {
             
 
         //RECEPTOR///////////////////
-            io.sockets.emit('nuevo mensaje',req);//evento enviado por el servidor
-            console.log(req);    
+            io.sockets.emit('nuevo mensaje',req.mensaje);//evento enviado por el servidor
+           // console.log(req);    
+            //console.log(session.user);
              let mensaje = {
-                usuario : ,
-                mensaje : req
+                usuario : req.usuario,
+                mensaje : req.mensaje
             }
            // console.log(User.find(User.local.usuario({})));
             console.log(mensaje);
