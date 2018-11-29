@@ -1,59 +1,178 @@
-<!DOCTYPE html>
-<html lang="en">
+
+
+<!DOCTYPE html><html class=''>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/sidenav.css">
-    <link rel="stylesheet" href="/css/chat.css">
-    <link rel="stylesheet" href="/css/perfil.css">
-
-    
-    <title>CHAT</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/sidenav.css">
+	<link rel="stylesheet" href="/css/chat.css">
+	<link rel="stylesheet" href="/css/perfil.css">
+	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+	<style class="cp-pen-styles">body {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 100vh;
+		background: #27ae60;
+		font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+		font-size: 1em;
+		letter-spacing: 0.1px;
+		color: #32465a;
+		text-rendering: optimizeLegibility;
+		text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+		-webkit-font-smoothing: antialiased;
+	}
+	</style>
 </head>
-<body class="fondo" >
-        <% include partials/head %>
 
-        <% include partials/navside %>
+<body class="fondo">
 
-    <div class="container" id=containerWrap>
-        <div class="col-md-6 offset-md-1 mx-auto">
-                        <!-- CHAT CONTAINER -->
-                        <div>
-                          <!-- CARD HEADER-->
-                          <div class="blanco">
-                            <h4>Chat</h3>
-                          </div>
-              
-                          <!-- CARD BODY-->
-                          <div id="chat" class="blanco"></div>
-                          
-                          <!-- CARD FOOTER -->
-                          <div class="fixed-bottom" class="position-static">
-                             <form action="" id="message-form" class="card-footer" >
-                                  <div class="input-group">
-                                  <input type="text" id="message" class="form-control"/>
-                                  <div class="input-group-append">
-                                    <button class="btn btn-warning">
-                                      <i class="fas fa-location-arrow"></i> Send
-                                </button>
-                              </div>
-                            </div>
-                            </form>
-                          </div>
-                         
-                        </div>
-                      </div>    
-              
 
-    </div>
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	
+<div id="frame">
+	<div id="sidepanel">
+		<div id="profile">
+			<div class="wrap">
+				<img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
+				<p><%= user.local.usuario %></p>
+			</div>
+		</div>
+					<div id="contacts">
+						<ul>
+							<li class="contact">
+								<div class="wrap">
+									<span class="contact-status online"></span>
+									<img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
+									<div class="meta">
+										<p class="name"><%= user.local.usuario %></p>
+										<p class="preview"><%= user.local.usuario %>:Mensaje</p>
+									</div>
+								</div>
+							</li>
+							<li class="contact active">
+								<div class="wrap">
+									<span class="contact-status busy"></span>
+									<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+									<div class="meta">
+											<p class="name"><%= user.local.usuario %></p>
+										<p class="preview"><%= user.local.usuario %>:Mensaje</p>
+									</div>
+								</div>
+							</li>
+							<li class="contact">
+								<div class="wrap">
+									<span class="contact-status away"></span>
+									<img src="http://emilcarlsson.se/assets/rachelzane.png" alt="" />
+									<div class="meta">
+											<p class="name"><%= user.local.usuario %></p>
+											<p class="preview"><%= user.local.usuario %>:Mensaje</p>
+									</div>
+								</div>
+							</li>
+							<li class="contact">
+								<div class="wrap">
+									<span class="contact-status online"></span>
+									<img src="http://emilcarlsson.se/assets/donnapaulsen.png" alt="" />
+									<div class="meta">
+											<p class="name"><%= user.local.usuario %></p>
+											<p class="preview"><%= user.local.usuario %>:Mensaje</p>
+									</div>
+								</div>
+							</li>
+							<li class="contact">
+								<div class="wrap">
+									<span class="contact-status busy"></span>
+									<img src="http://emilcarlsson.se/assets/jessicapearson.png" alt="" />
+									<div class="meta">
+											<p class="name"><%= user.local.usuario %></p>
+											<p class="preview"><%= user.local.usuario %>:Mensaje</p>
+									</div>
+								</div>
+							</li>
+							<li class="contact">
+								<div class="wrap">
+									<span class="contact-status"></span>
+									<img src="http://emilcarlsson.se/assets/haroldgunderson.png" alt="" />
+									<div class="meta">
+											<p class="name"><%= user.local.usuario %></p>
+											<p class="preview"><%= user.local.usuario %>:Mensaje</p>
+									</div>
+								</div>
+							</li>
+							<li class="contact">
+								<div class="wrap">
+									<span class="contact-status"></span>
+									<img src="http://emilcarlsson.se/assets/danielhardman.png" alt="" />
+									<div class="meta">
+											<p class="name"><%= user.local.usuario %></p>
+										<p class="preview"><%= user.local.usuario %>:Mensaje</p>
+									</div>
+								</div>
+							</li>
+							<li class="contact">
+								<div class="wrap">
+									<span class="contact-status busy"></span>
+									<img src="http://emilcarlsson.se/assets/katrinabennett.png" alt="" />
+									<div class="meta">
+											<p class="name"><%= user.local.usuario %></p>
+										<p class="preview"><%= user.local.usuario %>:Mensaje</p>
+									</div>
+								</div>
+							</li>
+							<li class="contact">
+								<div class="wrap">
+									<span class="contact-status"></span>
+									<img src="http://emilcarlsson.se/assets/charlesforstman.png" alt="" />
+									<div class="meta">
+											<p class="name"><%= user.local.usuario %></p>
+										<p class="preview"><%= user.local.usuario %>:Mensaje</p>
+									</div>
+								</div>
+							</li>
+							<li class="contact">
+								<div class="wrap">
+									<span class="contact-status"></span>
+									<img src="http://emilcarlsson.se/assets/jonathansidwell.png" alt="" />
+									<div class="meta">
+											<p class="name"><%= user.local.usuario %></p>
+										<p class="preview"><%= user.local.usuario %>:Mensaje</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+	
+	</div>
+	<div class="content">
+		<div class="contact-profile">
+			<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+			<p><%= user.local.usuario %></p>
+		</div>
+		<div class="messages">
+				<div id="chat" class="sent" class="blanco">
+						<ul>
+						</ul>
+				</div>
+			</ul>
+		</div>
+		<div class="message-input">
+			<div class="wrap">
+			<form action="" id="message-form" class="card-footer" >
+							<div class="input-group">
+							<input type="text" id="message" class="form-control"/>
+							<div class="input-group-append">
+							  <button class="btn btn-warning">
+								<ii class="fa fa-paper-plane" aria-hidden="true"></i>
+						  </button>
+						</div>
+					  </div>
+			</form>
+		
+		</div>
+	</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/chat.js"></script>
-</body>
-</html>
+</body></html>
