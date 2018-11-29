@@ -2,6 +2,7 @@ const mongoose = require('mongoose'),
     postModel = require('../models/post'),
     perfilModel = require('../models/perfil'),
     fondoModel = require('../models/fondo'),
+    followModel = require('../models/followed'),
     multer = require('multer'),
     path = require('path'),
     fs = require('fs');
@@ -14,7 +15,7 @@ const ImageFondo = require('../models/fondo');
 const User = require('../models/user');
 
 const PostController = {};
-
+User
 PostController.create = function (req, res) {
     var x = 0;
     let data = {
@@ -22,6 +23,7 @@ PostController.create = function (req, res) {
         image: req.files[x].originalname,
         comentario: req.body.comentario[x]
     };
+    console.log(req);   
     if (data.usuario && data.image && data.usuario != '' && data.image != '') {
         let nuevoPost = new postModel(data);
         nuevoPost.save(function (err, save) {
@@ -50,7 +52,7 @@ PostController.mostrar = function (req,res){
     });
 };
 PostController.perfiles = function (req, res){
-    User.find({},function(err,users){
+    ImagePerfil.find({},function(err,users){
         if(err){
             res.status(500);
             res.json({code:500, err});
@@ -126,7 +128,6 @@ PostController.updatePhoto = function(req, res){
     });
 
 }
-
 PostController.fondofoto = function (req, res) {
     var x = 0;
     let data = {
@@ -150,7 +151,6 @@ PostController.fondofoto = function (req, res) {
         res.json({err:{code: 400,  message: 'Faltan datos', data}});
     }
 };
-
 PostController.getFondo = function (req, res) {
     ImageFondo.findOne({'usuario': req.user.local.usuario}, function(err, image){
         if(err){
@@ -161,7 +161,6 @@ PostController.getFondo = function (req, res) {
         }
     })
 };
-
 PostController.updateFondo = function (req, res) {
     var x = 0;
     let update = {
@@ -182,5 +181,33 @@ PostController.updateFondo = function (req, res) {
 
 
 };
+PostController.followed = function(req,res){
+    let data = {
+        usuario: req.user.local.usuario,
+        follow: req.body.followed,
+        foto: req.body.foto
+    };
+        let nuevoFollow = new followModel(data);
+        nuevoFollow.save(function (err, save) {
+            if (err) {
+                res.status(500);
+                res.json({ code: 500, err });
+            } else {
+                res.json({ ok: true, message: 'Se a guardado con exitoAhora son amigos', save });
+            }
+        });
+
+};
+PostController.getFollowed = function (req, res){
+    followModel.find({usuario: req.user.local.usuario},function(err,users){
+        if(err){
+            res.status(500);
+            res.json({code:500, err});
+        } else {
+            res.json({ok: true, users});
+        }
+    });
+};
+
 
 module.exports = PostController;	
