@@ -37,10 +37,15 @@
                     <div class="collapse" id="menu1">
                         <a href="/profile" class="list-group-item" data-parent="#menu1"> Profile </a>
                         <a href="/chat" class="list-group-item" data-parent="#menu1">Chat</a>
-                        <a href="/logout" class="list-group-item" data-parent="#menu1">Logout</a>
+
                     </div>
-                    <a href="/followed" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i>
-                        <span class="d-none d-md-inline">Followed</span></a>
+                    <a href="#menu6" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
+                    data-parent="#sidebar" aria-expanded="false"><i class="fa fa-heart"></i>
+                        <span class="d-none d-md-inline">Social</span></a>
+                        <div class="collapse" id="menu6">
+                                <a href="/alluser" class="list-group-item" data-parent="#menu6"> search followed </a>
+                                <a href="/chat" class="list-group-item" data-parent="#menu6"> your followed</a>
+                            </div>
                     <a href="#menu2" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
                         data-parent="#sidebar" aria-expanded="false"><i class="fa fa-user"></i><span class="d-none d-md-inline">Settings</span></a>
                     <div class="collapse" id="menu2">

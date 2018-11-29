@@ -7,18 +7,18 @@ let app = {
     profilePhoto: "",
     fondoPhoto: "",
     init: function () {
-        
-        this.getusers();
+ 
         this.getfoto(() => {
             console.log(this.profilePhoto.image);
             document.getElementById('foto_perfil').src = "/ProfilePhotos/" + this.profilePhoto.image;
             var fotos = document.getElementsByClassName('foto');
             for (let index = 0; index < fotos.length; index++) {
                 fotos[index].src = "/ProfilePhotos/" + this.profilePhoto.image;
-            }
-           /* var imagen = document.getElementsByClassName("fondo")[0];
+            }/*
+            var imagen = document.getElementsByClassName("fondo")[0];
             var url = "/ProfilePhotos/" + this.profilePhoto.image;
-            imagen.style.backgroundImage = 'url('+url+')'; */
+            imagen.style.backgroundImage = 'url('+url+')'; 
+            */
         });
         this.getusuario(() => {
             this.getfoto();
@@ -191,17 +191,6 @@ let app = {
                 }
             });
 
-    },
-    getusers: function(){
-        fetch('/profile/user/users', {
-            method: 'get'
-        }).then(res => res.json()).then(data => {
-            if(data.ok){    
-                for (let index = 0; index < data.users.length; index++) {
-                    console.log(data.users[index].local.usuario);
-                }
-            }
-        });
     },
     //obteniendo, creando y actualizando foto de fondo
     getfondo: function (cb) {
