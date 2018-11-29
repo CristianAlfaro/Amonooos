@@ -18,7 +18,8 @@ $(function(){
     socket.on('nuevo',function(req,res){
         console.log(req);
        // $chat.append(req +'<br/>');
-        $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + req + '</p></li>').appendTo($('.messages ul'));
+        $('<li class="replies"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + req + '</p></li>').appendTo($('.messages ul'));
+        //$('<li class="replies"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + req + '</p></li>').appendTo($('.messages ul'));
 
     });
 
