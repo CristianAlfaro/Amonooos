@@ -80,19 +80,28 @@ let app = {
             <p> ${data.comentario} </p>
             <img src= "/photos/${data.image}"> 
             <div class= "opciones">
+                <a href="#" class="delete" post-id="${data._id}"><span class="fas fa-minus-circle"></span></a>
                 <a href="#" class="like"> <span class="fas fa-heart like"></span> </a> 
                 <a href="#" class="dislike"> <span class="fas fa-heartbeat dislike"></span> </a>
             </div>
-        `;
+        `; 
+        div.getElementsByClassName("delete")[0].addEventListener("click", (event)=>{    
+            this.deletePost(event, data, div, post);
+        });
         } else {
             div.innerHTML = `
             <h3> ${data.usuario} ha publicado 1 foto</h3>
             <img src= "/photos/${data.image}"> 
             <div class= "opciones">
+                <a href="#" class="delete" post-id="${data._id}"><span class="fas fa-minus-circle"></span></a>
                 <a href="#" class="like"> <span class="fas fa-heart like"></span> </a> 
                 <a href="#" class="dislike"> <span class="fas fa-heartbeat dislike"></span> </a>
             </div>
         `;
+        div.getElementsByClassName("delete")[0].addEventListener("click", (event)=>{
+            this.deletePost(event, data, div, post);
+        });
+        
         }
 
         post.appendChild(div);

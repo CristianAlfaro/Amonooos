@@ -18,8 +18,17 @@
     <% include partials/navside %>
     <main>
         <form action="/profile/upload" method="POST" name="postForm" class="formulario">
-            <input type="text" name="comentario" placeholder="comment something">
-            <input type="file" name="foto" value="Foto" id="fotoPost">
+            <div class="form-group">
+                <label for="comment" style="color:aliceblue;">Tell to the world what you are thiking about!!:</label>
+                <textarea class="form-control" rows="3" cols="50" id="comentario" name="comentario" placeholder="Comment something"></textarea>
+              </div>
+            <div class="form-group">
+                <label for="fotoPost" class="subir" style='color:aliceblue; cursor: pointer;'>
+                    <i class="fas fa-cloud-upload-alt"></i> Choose a photo
+                </label>
+                <input id="fotoPost" value="Foto" name="foto"onchange='cambiar()' type="file" style='display: none; ' />
+                <div id="informacion"></div>
+            </div>
             <input type="submit">
         </form>
         <div class="publicaciones">
