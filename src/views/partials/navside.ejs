@@ -10,12 +10,10 @@
                     
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link home" href="/home"> Home </a>
+                    <a class="nav-link home" href="/home"> <i class="fas fa-home">HOME</i> </a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="fas fa-search"></span></button>
                 <div class="fotoPerfil">
                         <img class="fotoperfil" id="foto_perfil" src="/img/user.png" alt="foto de perfil">    
                 </div>                
@@ -34,15 +32,16 @@
                     <div class="collapse" id="menu1">
                         <a href="/profile" class="list-group-item" data-parent="#menu1"> Profile </a>
                         <a href="/chat" class="list-group-item" data-parent="#menu1">Chat</a>
+                        <a href="/logout" class="list-group-item" data-parent="#menu1">Logout</a>
 
                     </div>
                     <a href="#menu6" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
                     data-parent="#sidebar" aria-expanded="false"><i class="fa fa-heart"></i>
                         <span class="d-none d-md-inline">Social</span></a>
                         <div class="collapse" id="menu6">
-                                <a href="/alluser" class="list-group-item" data-parent="#menu6"> search followed </a>
-                                <a href="/chat" class="list-group-item" data-parent="#menu6"> your followed</a>
-                            </div>
+                                <a href="/profile/user/alluser" class="list-group-item" data-parent="#menu6"> search followed </a>
+                                <a href="/profile/user/followed" class="list-group-item" data-parent="#menu6"> your followed</a>
+                        </div>
                     <a href="#menu2" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
                         data-parent="#sidebar" aria-expanded="false"><i class="fa fa-user"></i><span class="d-none d-md-inline">Settings</span></a>
                     <div class="collapse" id="menu2">

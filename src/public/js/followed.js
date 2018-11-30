@@ -43,11 +43,11 @@ let app = {
         let friends = document.getElementsByClassName('followed')[0];
         if (data) {
             for (let index = 0; index < data.users.length; index++) {
-                if(!(data.users[index].usuario == user)){
+                if(!(data.users[index].follow == user)){
                 let tr = document.createElement("tr");
                 tr.innerHTML = `
-                <td class= "center"> <img class ="fotoperfilsmall" src= "/ProfilePhotos/${data.users[index].image}"> </td>
-                <td>${data.users[index].usuario}</td>
+                <td class= "center"> <img class ="fotoperfilsmall" src= "/ProfilePhotos/${data.users[index].foto}"> </td>
+                <td>${data.users[index].follow}</td>
                 <td><a href="#" class="follow">follow</a></td>
                 `
                 friends.appendChild(tr);
@@ -56,7 +56,7 @@ let app = {
                     friends.removeChild(tr);
                 });
                 }
-            }
+            } 
 
         }
 
@@ -173,18 +173,19 @@ let app = {
 
     },
     getusers: function (newPost, user, followUser) {
-        fetch('/profile/user/allusers', {
+        fetch('/profile/user/search', {
             method: 'get'
         }).then(res => res.json()).then(data => {
             if (data.ok) {
                 for (let index = 0; index < data.users.length; index++) {
                     console.log(data.users[index].usuario);
                 }
+                console.log(data.users)
                 newPost(data, user, followUser);
 
             }
         });
-    },
+    }, 
     followUser: function (event, follow, photo){
         event.preventDefault();
         let dataForm = {

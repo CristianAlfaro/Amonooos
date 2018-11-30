@@ -1,73 +1,76 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light color fixed">
+    <a class="navbar-brand" data-target="#sidebar" data-toggle="collapse" aria-expanded="false" href="#">Amonooos</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light color fixed">
-                <a class="navbar-brand" data-target="#sidebar" data-toggle="collapse" aria-expanded="false" href="#">Amonooos</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-        
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item fotoPerfil">
-                            
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link home" href="/home"> Home </a>
-                        </li>
-                        
-        
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="fas fa-search"></span></button>
-                        <div class="fotoPerfil">
-                                <img class="fotoperfil" id="foto_perfil" src="/img/user.png" alt="foto de perfil">    
-                        </div>                
-                    </form>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item fotoPerfil">
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link home" href="/home"> <i class="fas fa-home"></i>HOME </a>
+            </li>
+
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <div class="fotoPerfil">
+                <img class="fotoperfil" id="foto_perfil" src="/img/user.png" alt="foto de perfil">
+            </div>
+        </form>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row d-flex d-md-block flex-nowrap wrapper">
+        <div class="col-md-2 float-left col-1 pl-0 pr-0 collapse width fixed2" id="sidebar">
+            <div class="list-group border-0 card text-center text-md-left">
+                <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar"
+                    aria-expanded="false"><i class="fa fa-user"></i> <span class="d-none d-md-inline">
+                        <%= user.local.usuario %></span>
+                </a>
+                <div class="collapse" id="menu1">
+                    <a href="/profile" class="list-group-item" data-parent="#menu1"> Profile </a>
+                    <a href="/chat" class="list-group-item" data-parent="#menu1">Chat</a>
+                    <a href="/logout" class="list-group-item" data-parent="#menu1">Logout</a>
                 </div>
-            </nav>
-        
-            <div class="container-fluid">
-                <div class="row d-flex d-md-block flex-nowrap wrapper">
-                    <div class="col-md-2 float-left col-1 pl-0 pr-0 collapse width fixed2" id="sidebar">
-                        <div class="list-group border-0 card text-center text-md-left">
-                            <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
-                                data-parent="#sidebar" aria-expanded="false"><i class="fa fa-user"></i> <span class="d-none d-md-inline">
-                                    <%= user.local.usuario %></span>
-                            </a>
-                            <div class="collapse" id="menu1">
-                                <a href="/profile" class="list-group-item" data-parent="#menu1"> Profile </a>
-                                <a href="/chat" class="list-group-item" data-parent="#menu1">Chat</a>
-                                <a href="/logout" class="list-group-item" data-parent="#menu1">Logout</a>
+                <a href="#menu6" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar"
+                    aria-expanded="false"><i class="fa fa-heart"></i>
+                    <span class="d-none d-md-inline">Social</span></a>
+                <div class="collapse" id="menu6">
+                    <a href="/profile/user/alluser" class="list-group-item" data-parent="#menu6"> search followed </a>
+                    <a href="/profile/user/followed" class="list-group-item" data-parent="#menu6"> your followed</a>
+                </div>
+                <a href="#menu2" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar"
+                    aria-expanded="false"><i class="fa fa-user"></i><span class="d-none d-md-inline">Settings</span></a>
+                <div class="collapse" id="menu2">
+                    <a href="#menu4" class="list-group-item" data-toggle="collapse" aria-expanded="false"> Backgroud
+                        image</a>
+                    <div class="collapse" id="menu4">
+                        <form action="/profile/user/backgroud" method="POST" name="formBack">
+                            <div class="list-group-item">
+                                <p class="texto"> <i class="fas fa-cloud-upload-alt"></i>choose a photo</p>
+                                <input type="file" name="fotoFondo" value="Foto" id="fotoFondo">
                             </div>
-                            <a href="/alluser" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i>
-                                <span class="d-none d-md-inline">Followed</span></a>
-                            <a href="#menu2" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
-                                data-parent="#sidebar" aria-expanded="false"><i class="fa fa-user"></i><span class="d-none d-md-inline">Settings</span></a>
-                            <div class="collapse" id="menu2">
-                                <a href="#menu4" class="list-group-item" data-toggle="collapse" aria-expanded="false"> Backgroud image</a>
-                                <div class="collapse" id="menu4">
-                                    <form action="/profile/user/backgroud" method="POST" name="formBack">
-                                        <div class="list-group-item">
-                                            <p class="texto"> <i class="fas fa-cloud-upload-alt"></i>choose a photo</p>
-                                            <input type="file" name="fotoFondo" value="Foto" id="fotoFondo">
-                                        </div>
-                                        <input class="list-group-item submitPP" type="submit">
-                                    </form>
-                                </div>
-                                <a href="#menu5" class="list-group-item" data-toggle="collapse" aria-expanded="false"> Font color </a>
-                                <div class="collapse" id="menu5">
-                                    <form action="/profile/user/photo" method="POST" name="formColor">
-                                        <div class="list-group-item">
-                                            <input class="fontcolor" type="color" name="font" id="color">
-                                        </div>
-                                        <input class="list-group-item submitPP" type="submit">
-                                    </form>
-                                </div>
-        
-                            </div>
-                        </div>
+                            <input class="list-group-item submitPP" type="submit">
+                        </form>
                     </div>
+                    <a href="#menu5" class="list-group-item" data-toggle="collapse" aria-expanded="false"> Font color
+                    </a>
+                    <div class="collapse" id="menu5">
+                        <form action="/profile/user/photo" method="POST" name="formColor">
+                            <div class="list-group-item">
+                                <input class="fontcolor" type="color" name="font" id="color">
+                            </div>
+                            <input class="list-group-item submitPP" type="submit">
+                        </form>
+                    </div>
+
                 </div>
             </div>
-        
+        </div>
+    </div>
+</div>

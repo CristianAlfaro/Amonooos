@@ -103,7 +103,7 @@ let app = {
             });
     },
     loadContent: function (newPost, foto) {
-        fetch('/profile/fotos', {
+        fetch('/profile/fotos/followed', {
             method: 'GET'
         }).then(res => {
             return res.json()

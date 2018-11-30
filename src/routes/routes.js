@@ -78,7 +78,15 @@ module.exports = (app, passport) => {
         });
     })
 
-    app.get('/alluser', isLoggedIn, (req,res) => {
+    //FOLLOW
+
+    app.get('/profile/user/followed', isLoggedIn, (req, res) =>{
+        res.render('followed', {
+            user: req.user
+        });
+    })
+
+    app.get('/profile/user/alluser', isLoggedIn, (req,res) => {
         res.render('allUser', {
             user: req.user
         });
@@ -105,6 +113,8 @@ module.exports = (app, passport) => {
     // GET PHOTOS
 
     app.get('/profile/fotos/', PostController.mostrar);
+
+    app.get('/profile/fotos/followed', PostController.mostrarfotos);
 
     //DELETE PHOTO
 
@@ -160,7 +170,7 @@ module.exports = (app, passport) => {
     app.post('/profile/user/follow', PostController.followed);
 
     //GET FOLLOWED
-   // app.get('/profile/user/followed', PostController.getfollowed);
+    app.get('/profile/user/search', PostController.getFollowed);
 
     app.get('/profile/user/users', PostController.perfiles);
 
