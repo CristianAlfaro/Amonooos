@@ -10,6 +10,24 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+#banner {
+	margin-top: 50px;
+    position: relative;
+    background-color: #333;
+}
+#banner .contenedor {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	color: #fff;
+}
+
+#banner img {
+	width: 100%;
+	height: 100%;	
+}
+
 
 html{
     height: 100%;
@@ -33,6 +51,8 @@ main{
 .post{
     width: 50em;
     display: flex;
+    word-break: break-word;
+    text-align: center;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -43,6 +63,24 @@ main{
     -webkit-box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75); 
     -moz-box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75); 
     box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75); 
+}
+.shadow{
+    width: 50em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.336);
+    margin: 1em 0;
+    padding: 4em 0 2em;
+    transition: all 0.5s;
+    -webkit-box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75); 
+    -moz-box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75); 
+    box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75); 
+}
+.submitHover:hover{
+    transition: all 0.5s;
+    background-color: rgba(51, 3, 3, 0.445);;
 }
 
 .post:hover{
@@ -56,11 +94,14 @@ main{
 
 .post a{
     color: white;
-    font-size: 1em;
+    font-size: 1.7em;
+    margin: 0.5em;
 }
 
 .post p{
-    color: red;
+    color: aliceblue;
+    padding: 0 10em;
+    margin-top: 1em;
 }
 
 .post h3{
@@ -99,6 +140,10 @@ main{
     border-radius: 5em;
     width: 40%;
     border: 0;
+}
+.formulario input:hover[type=submit]{
+    transition: all 1s;
+    background-color: rgb(255, 255, 255);
 }
 
 .fotoPerfil{
@@ -155,28 +200,31 @@ img.fotoperfilsmall{
 .fixed2{
     position: fixed;
 }
+span.delete{
+    font-size: 1.7em;
+}
 
 span.like{
-    font-size: 1.7em;
-    margin: 0.5em 1em 0;
+    
     transition: all 0.2s;
 }
 
 span.like:hover{
     color: red;
     transition: all 0.5s;
+    font-size: 1.2em;
 
 }
 
+
 span.dislike{
-    font-size: 1.7em;
-    margin: 0.5em 1em 0;
     transition: all 0.2s;
 }
 
 span.dislike:hover{
     color: red;
     transition: all 0.5s;
+    font-size: 1.2em;
 }
 
 #fotoPerfil, #fotoFondo{
@@ -229,4 +277,8 @@ span.dislike:hover{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.cajaPretty{
+    text-align: center;
 }

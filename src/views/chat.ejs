@@ -26,15 +26,12 @@
 </head>
 
 <body class="fondo">
-
-
-
 <div id="frame">
 	<div id="sidepanel">
 		<div id="profile">
 			<div class="wrap">
 				<img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-				<p><%= user.local.usuario %></p>
+				<p id='userActual'><%= user.local.usuario %></p>
 			</div>
 		</div>
 					<div id="contacts">
@@ -44,19 +41,19 @@
 									<span class="contact-status online"></span>
 									<img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
 									<div class="meta">
-										<p class="name"><%= user.local.usuario %></p>
-										<p class="preview"><%= user.local.usuario %>:Mensaje</p>
+										<p class="name" id="user"><%= user.local.usuario %></p>
+										<p class="preview" id="chat" class="sent" class="blanco"></p>
 									</div>
 								</div>
 							</li>
-							<li class="contact active">
+							<li class="contact">
 								<div class="wrap">
 									<span class="contact-status busy"></span>
 									<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
 									<div class="meta">
 											<p class="name"><%= user.local.usuario %></p>
-										<p class="preview"><%= user.local.usuario %>:Mensaje</p>
-									</div>
+											<p class="preview" id="chat" class="sent" class="blanco"></p>
+										</div>
 								</div>
 							</li>
 							<li class="contact">
@@ -65,8 +62,8 @@
 									<img src="http://emilcarlsson.se/assets/rachelzane.png" alt="" />
 									<div class="meta">
 											<p class="name"><%= user.local.usuario %></p>
-											<p class="preview"><%= user.local.usuario %>:Mensaje</p>
-									</div>
+											<p class="preview" id="chat" class="sent" class="blanco"></p>
+										</div>
 								</div>
 							</li>
 							<li class="contact">
@@ -75,8 +72,8 @@
 									<img src="http://emilcarlsson.se/assets/donnapaulsen.png" alt="" />
 									<div class="meta">
 											<p class="name"><%= user.local.usuario %></p>
-											<p class="preview"><%= user.local.usuario %>:Mensaje</p>
-									</div>
+											<p class="preview" id="chat" class="sent" class="blanco"></p>
+										</div>
 								</div>
 							</li>
 							<li class="contact">
@@ -85,8 +82,8 @@
 									<img src="http://emilcarlsson.se/assets/jessicapearson.png" alt="" />
 									<div class="meta">
 											<p class="name"><%= user.local.usuario %></p>
-											<p class="preview"><%= user.local.usuario %>:Mensaje</p>
-									</div>
+											<p class="preview" id="chat" class="sent" class="blanco"></p>
+										</div>
 								</div>
 							</li>
 							<li class="contact">
@@ -95,8 +92,8 @@
 									<img src="http://emilcarlsson.se/assets/haroldgunderson.png" alt="" />
 									<div class="meta">
 											<p class="name"><%= user.local.usuario %></p>
-											<p class="preview"><%= user.local.usuario %>:Mensaje</p>
-									</div>
+											<p class="preview" id="chat" class="sent" class="blanco"></p>
+										</div>
 								</div>
 							</li>
 							<li class="contact">
@@ -105,8 +102,8 @@
 									<img src="http://emilcarlsson.se/assets/danielhardman.png" alt="" />
 									<div class="meta">
 											<p class="name"><%= user.local.usuario %></p>
-										<p class="preview"><%= user.local.usuario %>:Mensaje</p>
-									</div>
+											<p class="preview" id="chat" class="sent" class="blanco"></p>
+										</div>
 								</div>
 							</li>
 							<li class="contact">
@@ -115,8 +112,8 @@
 									<img src="http://emilcarlsson.se/assets/katrinabennett.png" alt="" />
 									<div class="meta">
 											<p class="name"><%= user.local.usuario %></p>
-										<p class="preview"><%= user.local.usuario %>:Mensaje</p>
-									</div>
+											<p class="preview" id="chat" class="sent" class="blanco"></p>
+										</div>
 								</div>
 							</li>
 							<li class="contact">
@@ -125,8 +122,9 @@
 									<img src="http://emilcarlsson.se/assets/charlesforstman.png" alt="" />
 									<div class="meta">
 											<p class="name"><%= user.local.usuario %></p>
-										<p class="preview"><%= user.local.usuario %>:Mensaje</p>
-									</div>
+											<input type="hidden" id='idSesion' value="<%= user.local.usuario %>">
+											<p class="preview" id="chat" class="sent" class="blanco"></p>
+										</div>
 								</div>
 							</li>
 							<li class="contact">
@@ -135,7 +133,7 @@
 									<img src="http://emilcarlsson.se/assets/jonathansidwell.png" alt="" />
 									<div class="meta">
 											<p class="name"><%= user.local.usuario %></p>
-										<p class="preview"><%= user.local.usuario %>:Mensaje</p>
+											<p class="preview" id="chat" class="sent" class="blanco"></p>
 									</div>
 								</div>
 							</li>
@@ -149,15 +147,16 @@
 			<p><%= user.local.usuario %></p>
 		</div>
 		<div class="messages">
-				<div id="chat" class="replies" class="blanco">
+				
 						<ul>
 						</ul>
-				</div>
+						<!--<div id="chat" class="sent" class="blanco"></div>-->
 			</ul>
 		</div>
 		<div class="message-input">
 			<div class="wrap">
 			<form action="" id="message-form" class="card-footer" >
+
 							<div class="input-group">
 							<input type="text" id="message" class="form-control"/>
 							<div class="input-group-append">
@@ -171,6 +170,7 @@
 		</div>
 	</div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/bootstrap.min.js"></script>

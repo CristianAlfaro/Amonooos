@@ -5,12 +5,6 @@ var fs = require('fs');
 var Path = path.join(__dirname, "..", "public", "photos");
 PostController = require('../config/postControllers');
 
-
-var session = require('express-session');
-var status = require('../models/status');
-var notif = require('../models/notificaciones');
-var User = require('../models/user');
-var message = require('../models/mensajes');
 //var chat=require('../models/chatbase')
 
 const Image = require('../models/post');
