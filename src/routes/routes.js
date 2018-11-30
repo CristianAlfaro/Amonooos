@@ -102,73 +102,60 @@ module.exports = (app, passport) => {
 
     //UPLOAD PHOTO
 
-    app.post('/profile/upload', upload.array('foto', 1), PostController.create);
+    app.post('/profile/upload', isLoggedIn, upload.array('foto', 1), PostController.create);
 
     // GET PHOTOS
 
-    app.get('/profile/fotos/', PostController.mostrar);
+    app.get('/profile/fotos/', isLoggedIn, PostController.mostrar);
 
-    app.get('/profile/fotos/followed', PostController.mostrarfotos);
+    app.get('/profile/fotos/followed', isLoggedIn, PostController.mostrarfotos);
 
     //DELETE PHOTO
 
-    app.delete('/profile/delete/:id', PostController.delete);
+    app.delete('/profile/delete/:id', isLoggedIn, PostController.delete);
 
     //GET USER
 
-    app.get('/profile/user', PostController.usuario);
+    app.get('/profile/user', isLoggedIn, PostController.usuario);
 
     //UPLOAD PROFILE PHOTO
 
-    app.post('/profile/user/photo', upload.array('foto', 1), PostController.perfilfoto);
+    app.post('/profile/user/photo', isLoggedIn, upload.array('foto', 1), PostController.perfilfoto);
 
     //GET USER PROFILE PHOTO
 
-    app.get('/profile/user/photo', PostController.getPhoto);
+    app.get('/profile/user/photo', isLoggedIn, PostController.getPhoto);
 
     //PUT USER PROFILE PHOTO
 
     //console.log(this.fondoPhoto.image);
-    app.put('/profile/user/photo', upload.array('foto', 1), PostController.updatePhoto);
-
-    //upload background photo
-
-    app.post('/profile/user/background', upload.array('foto', 1), PostController.fondofoto);
-
-    //get user background photo
-
-    app.get('/profile/user/background', PostController.getFondo);
-
-    //put user background photo
-
-    app.put('/profile/user/background', upload.array('foto', 1), PostController.updateFondo);
+    app.put('/profile/user/photo', isLoggedIn, upload.array('foto', 1), PostController.updatePhoto);
 
     //CHAT
-
     app.get('/chat', isLoggedIn, (req, res) => {
         res.render('chat', {
             user: req.user
         });
     });
 
-    app.post('/chat', passport.authenticate('local-login', {
+    app.post('/chat', isLoggedIn, passport.authenticate('local-login', {
         successRedirect: '/chat',
         failureRedirect: '/',
         failureFlash: true
     }));
 
     //GET ALL USER 
-    app.get('/profile/user/allusers', PostController.perfiles);
+    app.get('/profile/user/allusers', isLoggedIn, PostController.perfiles);
 
     //ADD FOLLOWED
-    app.post('/profile/user/follow', PostController.followed);
+    app.post('/profile/user/follow', isLoggedIn, PostController.followed);
 
-    app.delete('/profile/user/desfollowed', PostController.deletefollowed);
+    app.delete('/profile/user/desfollowed', isLoggedIn, PostController.deletefollowed);
 
     //GET FOLLOWED
-    app.get('/profile/user/search', PostController.getFollowed);
+    app.get('/profile/user/search', isLoggedIn, PostController.getFollowed);
 
-    app.get('/profile/user/users', PostController.perfiles);
+    app.get('/profile/user/users', isLoggedIn, PostController.perfiles);
 
     
 };
