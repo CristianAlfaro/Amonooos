@@ -81,7 +81,7 @@ let app = {
             <p> ${data.comentario} </p>
             <img src= "/photos/${data.image}"> 
             <div class= "opciones">
-                <a href="#" class="delete" post-id="${data._id}"><span class="fas fa-minus-circle"></span></a>
+                <a href="/profile/delete/${data._id}" class="delete" post-id="${data._id}"><span class="fas fa-minus-circle"></span></a>
                 <a href="#" class="like"> <span class="fas fa-heart like"></span> </a> 
                 <a href="#" class="dislike"> <span class="fas fa-heartbeat dislike"></span> </a>
             </div>
@@ -94,7 +94,7 @@ let app = {
             <h3> ${data.usuario} ha publicado 1 foto</h3>
             <img src= "/photos/${data.image}"> 
             <div class= "opciones">
-                <a href="#" class="delete" post-id="${data._id}"><span class="fas fa-minus-circle"></span></a>
+                <a href="/profile/delete/${data._id}" class="delete" post-id="${data._id}"><span class="fas fa-minus-circle" style="font-size: 1.7em;"></span></a>
                 <a href="#" class="like"> <span class="fas fa-heart like"></span> </a> 
                 <a href="#" class="dislike"> <span class="fas fa-heartbeat dislike"></span> </a>
             </div>
@@ -104,8 +104,20 @@ let app = {
         });
         
         }
-
         post.appendChild(div);
+        let deletes_post = document.querySelectorAll(".delete");
+        deletes_post.forEach(item => {
+            item.addEventListener('click', function(e){
+                e.preventDefault();
+               fetch(this["href"],{
+                   method: "DELETE"
+               }).then(res =>res.json())
+               .catch(err => console.error(err))
+               .then(response => {
+                   alert("Eliminado con exito")
+               });
+            })
+        });
     },
     createPost: function (event, newPost, foto) {
         event.preventDefault();

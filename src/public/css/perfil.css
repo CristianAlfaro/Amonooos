@@ -94,11 +94,12 @@ main{
 
 .post a{
     color: white;
-    font-size: 1em;
+    font-size: 1.7em;
+    margin: 0.5em;
 }
 
 .post p{
-    color: red;
+    color: aliceblue;
     padding: 0 10em;
     margin-top: 1em;
 }
@@ -199,28 +200,31 @@ img.fotoperfilsmall{
 .fixed2{
     position: fixed;
 }
+span.delete{
+    font-size: 1.7em;
+}
 
 span.like{
-    font-size: 1.7em;
-    margin: 0.5em 1em 0;
+    
     transition: all 0.2s;
 }
 
 span.like:hover{
     color: red;
     transition: all 0.5s;
+    font-size: 1.2em;
 
 }
 
+
 span.dislike{
-    font-size: 1.7em;
-    margin: 0.5em 1em 0;
     transition: all 0.2s;
 }
 
 span.dislike:hover{
     color: red;
     transition: all 0.5s;
+    font-size: 1.2em;
 }
 
 #fotoPerfil, #fotoFondo{
