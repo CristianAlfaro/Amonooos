@@ -216,10 +216,21 @@ PostController.followed = function (req, res) {
             res.status(500);
             res.json({ code: 500, err });
         } else {
-            res.json({ ok: true, message: 'Se a guardado con exitoAhora son amigos', save });
+            res.json({ ok: true, message: 'Se a guardado con exito', save });
         }
     });
 
+};
+PostController.deletefollowed = function (req, res){
+    console.log(req.body);
+    followModel.findOneAndRemove({usuario: req.user.local.usuario, follow: req.body.followed}, function(err, eliminado){
+        if (err) {
+            res.status(500);
+            res.json({ code: 500, err });
+        } else {
+            res.json({ ok: true, message: 'Se a elimino con exito', eliminado });
+        }
+    });
 };
 PostController.getFollowed = function (req, res) {
     Followed.find({ 'usuario': req.user.local.usuario }, function (err, users) {

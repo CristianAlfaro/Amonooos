@@ -1,3 +1,3 @@
 module.exports = {
-    'url': 'mongodb://localhost/redsocial5'
+    'url': 'mongodb://localhost/amonooos'
 };

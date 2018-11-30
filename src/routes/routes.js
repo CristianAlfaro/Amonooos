@@ -163,6 +163,8 @@ module.exports = (app, passport) => {
     //ADD FOLLOWED
     app.post('/profile/user/follow', PostController.followed);
 
+    app.delete('/profile/user/desfollowed', PostController.deletefollowed);
+
     //GET FOLLOWED
     app.get('/profile/user/search', PostController.getFollowed);
 

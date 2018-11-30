@@ -48,11 +48,11 @@ let app = {
                 tr.innerHTML = `
                 <td class= "center"> <img class ="fotoperfilsmall" src= "/ProfilePhotos/${data.users[index].foto}"> </td>
                 <td>${data.users[index].follow}</td>
-                <td><a href="#" class="follow">follow</a></td>
+                <td><a href="#" class="follow">desfollow</a></td>
                 `
                 friends.appendChild(tr);
                 tr.getElementsByClassName("follow")[0].addEventListener("click", (event) => {
-                    followUser(event, data.users[index].usuario, data.users[index].image);
+                    followUser(event, data.users[index].follow);
                     friends.removeChild(tr);
                 });
                 }
@@ -186,23 +186,22 @@ let app = {
             }
         });
     }, 
-    followUser: function (event, follow, photo){
+    followUser: function (event, follow){
         event.preventDefault();
         let dataForm = {
-            followed: follow,
-            foto: photo
+            followed: follow
         };
         let options = {
-            method: 'POST',
+            method: 'delete',
             body: JSON.stringify(dataForm),
             headers:{
                 'Content-type': 'application/json'
             }
         };
-        fetch('/profile/user/follow',options).then(res => res.json())
+        fetch('/profile/user/desfollowed',options).then(res => res.json())
         .then(_data => {
             if (_data.ok) {
-                console.log("ahora son amigos");
+                console.log("ahora ya no son amigos");
             } else {
                 document.getElementsByClassName("errors")[0].innerText = "No se pudo guardar";
             }
